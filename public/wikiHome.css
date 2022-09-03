@@ -1,0 +1,113 @@
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: #eee;
+}
+
+.nav{
+    position: fixed;
+}
+
+.card{
+    color: black;
+}
+
+
+.season{
+    width: 330px;
+    height: 500px;
+    /* left: x; */
+}
+
+.characterBg{
+    background-color: grey;
+    height: 300px;
+    width: 200px
+}
+
+.Synopsis{
+    background-color: rgb(201, 63, 63);
+    
+    text-align: center;
+    /* margin-left: auto;
+    margin-right: auto; */
+    margin: auto;
+    /* color: white; */
+    border-radius: 7px;
+    width: 50%;
+    /* height: 5%; */
+}
+    .synopsisContent{
+        text-align: center;
+        /* color: white; */
+    }
+
+
+
+.series{
+    background-color: rgb(201, 63, 63) ;
+    /* color:white; */
+    text-align: center;
+    margin: auto;
+    /* width: 20%; */
+    /* height: 5%; */
+    border-radius: 7px;
+    margin-bottom: 20px;
+}
+/* CHARACTER */
+.character{
+    background-color: rgb(201, 63, 63) ;
+    /* color:white; */
+    text-align: center;
+    width: 20%;
+    /* height: 5%; */
+    border-radius: 7px;
+    margin-bottom: 20px;
+}
+
+.cardCharacter{
+    background-color: transparent;
+}
+
+.card{
+    background-color: transparent;
+}
+
+.characterImg{
+    width: 160px;
+    height: 200px;
+    /* height: 239px; */
+}
+
+.seriesAOT{
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;   
+}
+
+.chara {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.identyImg{
+    width: 300px;
+    height: 350px;
+    object-fit: cover;
+    object-position: center;
+    justify-content : center;
+}
+
+.identyDescription{
+    font-size: small;
+    text-align: center;
+}
+
+.identyContent{
+    margin-right: 20px;
+}
