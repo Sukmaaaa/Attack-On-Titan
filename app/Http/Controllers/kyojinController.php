@@ -22,6 +22,7 @@ class kyojinController extends Controller
         $this->middleware('can:view-character');
 
         $kyojin = kyojin::all();
+        
 
         return view('admin.kyojin.index')->with([
             'kyojin' => $kyojin
@@ -74,7 +75,7 @@ class kyojinController extends Controller
             ]);
 
             return redirect()->route('kyojin.index')
-                ->with('success', 'data created successful.');
+                ->with('success', 'Character created successful.');
         };
     }
 
@@ -135,7 +136,7 @@ class kyojinController extends Controller
         $kyojin->update($data);
 
         return redirect()->route('kyojin.index')
-            ->with('primary', 'data updated successful');
+            ->with('primary', 'Character updated successful');
     }
 
     /**
@@ -152,6 +153,6 @@ class kyojinController extends Controller
         $kyojin->delete();
 
         return redirect()->route('kyojin.index')
-            ->with('danger', 'data deleted successfully');
+            ->with('danger', 'Character deleted successfully');
     }
 }

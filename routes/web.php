@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\kyojinController;
+use App\Http\Controllers\seriesController;
+use App\Http\Controllers\episodeController;
 use App\Http\Controllers\adminKyojinController;
 use App\Http\Controllers\newsController;
 use App\Http\Controllers\roleController;
@@ -27,6 +29,8 @@ Route::get('/', function () {
 
 route::resource('/attack', shingekiController::class);
 route::resource('/audit', auditController::class);
+route::resource('/series', seriesController::class);
+route::resource('/episode', episodeController::class);
 
 Auth::routes();
 

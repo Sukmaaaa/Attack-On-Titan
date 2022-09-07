@@ -150,7 +150,7 @@ class adminKyojinController extends Controller
             'role' => 'required'
         ]);
 
-        return redirect()->route('adminKyojin.index')->with('success', 'Updating Success');
+        return redirect()->route('adminKyojin.index')->with('primary', 'data updated successful');
 
         // NEW UPDATE
         // $user = User::find($id);
@@ -194,6 +194,6 @@ class adminKyojinController extends Controller
         // $admin->delete();
 
         return redirect()->route('adminKyojin.index')
-            ->with('success', 'data deleted successfully');
+            ->with('danger', 'data deleted successful');
     }
 }

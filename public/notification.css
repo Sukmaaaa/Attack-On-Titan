@@ -1,11 +1,37 @@
-.alert{
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s 2s, opacity 2s linear;
+.progress{
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    height: 3px;
+    background-image: 
+    linear-gradient(to right,
+    #519bdb, #3250bf);
+    border-radius: 4px;
+    animation: progress 0s .25s
+    linear forwards;
 }
 
-.alert {
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 2s linear;
-  }
+@keyframes fade{
+    5% {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0px);
+    }
+    90%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    95%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+}
+
+@keyframes progress{
+    to {
+        width: calc(100% - 10px);
+    }
+}

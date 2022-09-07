@@ -101,8 +101,8 @@
 
 {{-- NEW IDENTY --}}
 <section id="Home">
-    <div class="mt-3 ms-3"><img src="https://i.imgflip.com/6592dd.png" width="200"></div>
-    <hr>
+    <div class="mt-3 ms-5"><img class="ms-5" src="https://i.imgflip.com/6592dd.png" width="200"></div>
+    <hr class="col-12">
         <div class="container d-flex flex-row justify-content-between">
             <div class="col-6">
                 <p>
@@ -118,6 +118,7 @@
                 </p>
             </div>
 
+            {{-- CARD INFORMATION --}}
             <div class="d-flex justify-content-end">
                 <div class="card" style="width: 22rem;"> 
                     <div class="card-header text-center">
@@ -129,23 +130,141 @@
                             <img src="https://upload.wikimedia.org/wikipedia/en/d/d6/Shingeki_no_Kyojin_manga_volume_1.jpg" class="identyImg " width="100">
 
                             <div class="col identyDescription"><p>Cover of Attack on Titan tankōbon volume 1, featuring Eren Yeager about to attack the oncoming Colossal Titan</p></div>
+
+                            <div class="container titleInformationCard">
+                                    <p>進撃の巨人<br>
+                                        (<em>Shingeki no Kyojin</em>)</p>
+                            </div>
+
+                            <div class="row">
+                                <strong class="col" style="font-size: small"> Genre </strong>
+
+                                <p class="col" style="font-size: small">
+                                    Action <br>
+                                    Dark Fantasy <br>
+                                    Post Apocalyptic
+                                </p>
+                            </div>
+
+                            <strong class="mangaInformationCard" style="text-align: center">Manga</strong>
+
+                            {{-- MANGA --}}
+                            <div class="row mt-3" style="font-size: small">
+                                <div class="col-6">
+                                    <strong>
+                                        <p> Written by</p>
+                                    </strong>
+                                </div>
+
+                                <div class="col-6">
+                                    <p> Hajime Isayama </p>
+                                </div>
+                            </div>
+
+                            <div class="row" style="font-size: small">
+                                <div class="col-6">
+                                    <strong>
+                                        <p>Published by</p>
+                                    </strong>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <p>Kodansha</p>
+                                    </div>
+                            </div>
+
+                            <div class="row" style="font-size: small">
+                                <div class="col-6">
+                                    <strong>
+                                        <p> English Publisher </p>
+                                    </strong>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <p> <sup>NA</sup> Kodansha USA </p>
+                                    </div>
+                            </div>
+
+                            <div class="row" style="font-size: small">
+                                <div class="col-6">
+                                    <strong>
+                                        <p> Imprint </p>
+                                    </strong>
+                                </div>
+
+                                <div class="col-6">
+                                    <p> Shōnen Magazine Comics </p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: small">
+                                <div class="col-6">
+                                    <strong>
+                                        <p>Megazine</p>
+                                    </strong>
+                                </div>
+
+                                <div class="col-6">
+                                    <p>Bessatsu Shōnen Magazine</p>
+                                </div>
+                            </div>
+
+                            <div class="row" style="font-size: small">
+                                <div class="col-6">
+                                    <strong>
+                                        <p>Demographic</p>
+                                    </strong>
+                                </div>
+
+                                <div class="col-6">
+                                    <p>Shōnen</p>
+                                </div>
+                            </div>
+
+                            <div class="row" style="font-size: small">
+                                <div class="col-6">
+                                    <strong>
+                                        <p>Original Run</p>
+                                    </strong>
+                                </div>
+
+                                <div class="col-6">
+                                    <p>September 9, 2009 – April 9, 2021</p>
+                                </div>
+                            </div>
+
+                            <div class="row" style="font-size: small">
+                                <div class="col-6">
+                                    <strong>
+                                        <p> Volumes </p>
+                                    </strong>
+                                </div>
+
+                                <div class="col-6">
+                                    <p> 34 </p>
+                                </div>
+                            </div>
+                            {{-- END MANGA --}}
+                            
                         </div>
                     </div>
                 </div>
             </div>
+            {{-- END CARD INFORMATION --}}
         </div>
 </section>
 {{-- END NEW IDENTY --}}
 
-<!-- Article1 -->
+<!-- SYNOPSIS -->
 <hr color="black" size="3px">
 <section id="Synopsis">
+<div>
     <h5 class="ms-3">Synopsis</h5>
     <div class="d-flex flex-row ms-3">
         <p class="">"That day, the human race remembered the terror of being dominated by them, and the shame of being held captive in a birdcage..." — Over 100 years ago, a natural predator of humanity appeared: the Titans, giant humanoid but mindless monsters whose sole purpose of existence seemed to be to devour humans. There was an insurmountable gap in power between them and mankind, and as a result, humanity was rapidly exterminated to the brink of extinction. The survivors responded by constructing three concentric walls: Wall Maria, Wall Rose and Wall Sina, which graced them with a century of peace. However, one day a Colossal Titan far larger than any other seen before breached the outer wall, allowing the smaller Titans to invade the human territory and forcing the survivors to retreat to the inner walls. Eren Jaeger, a boy whose mother was eaten during the invasion, vowed to wipe every last Titan off the face of the Earth, and joined the military determined to exact his revenge. </p>
     </div>
+</div>
 </section>
-<!-- End article -->
+<!-- END SYNOPSIS -->
 
 {{--   NEW SERIES --}}
 <hr size="3px">
@@ -154,7 +273,7 @@
         <h5 class="ms-3">Series</h5>
         <div class="d-flex flew-row ms-3" style="gap: 1rem">
                 @foreach ($news as $n)
-                        <a href="{{route('attack.show', $n->id)}}" class="card" style="width: 15rem;">
+                        <a href="{{route('attack.show', $n->id)}}" class="card cardSeries" style="width: 22rem;">
                             <img src="{{ $n->image }}" class="SeriesAOT ms-3 mt-4 season"/>
                             <div class="card-body">
                                 <label class="card-title light" style="text-align: center">{{ $n->article }}</label>
@@ -171,7 +290,9 @@
    <h5 class="ms-3 mt-5">Character</h5>
    <div class="d-flex flex-wrap">
        @foreach ($kyojin as $character)
-           <img src="{{ $character->image }}" class="chara col ms-4"/>
+       <a href="">
+           <img src="{{ $character->image }}" class="chara col ms-4 justify-content-center"/>
+        </a>
        @endforeach
    </div>
 </section>

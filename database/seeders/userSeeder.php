@@ -33,5 +33,11 @@ class userSeeder extends Seeder
             'email' => 'user@kyojin.com',
             'password' => Hash::make('alifpedo')
         ])->assignRole('user');
+
+        User::create([
+            'name' => 'afii',
+            'email' => 'afii@kyojin.com',
+            'password' => Hash::make('afiikyojin')
+        ])->assignRole('admin');
     }
 }

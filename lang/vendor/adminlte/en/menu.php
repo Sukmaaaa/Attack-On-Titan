@@ -7,6 +7,8 @@ return [
     'pages'                         => 'Pages',
     'account_settings'              => 'USER MANAGEMENT',
     'news'                          => 'NEWS MANAGEMENT',
+    'series'                        => 'SERIES MANAGEMENT',
+    'episode'                       => 'EPISODE MANAGEMENT',
     'dataaccount'                   => 'DATA MANAGEMENT',
     'roles'                         => 'ROLE MANAGEMENT',
     'management'                    => 'MANAGEMENT',

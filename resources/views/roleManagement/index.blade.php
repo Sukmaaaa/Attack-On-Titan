@@ -16,6 +16,23 @@
 @endsection
 
 @section('content')
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success" id="pemberitahuan1">
+            <p class="notif-create">{{ $message }}</p>
+        </div>
+    @endif
+    @if ($message = Session::get('primary'))
+        <div class="alert alert-primary" id="pemberitahuan1">
+            <p class="notif-create">{{ $message }}</p>
+        </div>
+    @endif
+    @if ($message = Session::get('danger'))
+        <div class="alert alert-danger" id="pemberitahuan1">
+            <p class="notif-create">{{ $message }}</p>
+        </div>
+    @endif
+
+
     @php
 
     $heads = [['label' => 'No.', 'width' => 5], 'Role', ['label' => 'Actions', 'no-export' => true, 'width' => 5]];
@@ -60,6 +77,14 @@
             </x-adminlte-datatable>
         </div>
     </div>
+@endsection
+
+@section('js')
+<script>
+    const pemberitahuan = document.getElementById('pemberitahuan1');
+
+    pemberitahuan !== null && setTimeout(() => { pemberitahuan.style.display = 'none' }, 3000);
+</script>
 @endsection
 
 @section('js')

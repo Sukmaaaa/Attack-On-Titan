@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\kyojin;
 
 class HomeController extends Controller
 {
@@ -23,10 +24,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $getRoleName = User::find(Auth::id())->getRoleNames()[0];
 
-        return view('home')->with(['roleName' => $getRoleName]);
+        // $kyojin = kyojin::find->max('$id');
+        // $kyojin = kyojin::find($id);
+
+        return view('home')->with([
+            'roleName' => $getRoleName,
+        ]);
     }
 }

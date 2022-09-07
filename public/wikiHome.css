@@ -6,10 +6,6 @@ body{
     background-color: #eee;
 }
 
-.nav{
-    position: fixed;
-}
-
 .card{
     color: black;
 }
@@ -88,11 +84,16 @@ body{
     object-position: center;   
 }
 
+.cardSeries{
+    background-color: white;
+}
+
 .chara {
     width: 200px;
-    height: 300px;
+    height: 200px;
     object-fit: cover;
     object-position: center;
+    justify-content: center;
 }
 
 .identyImg{
@@ -110,4 +111,16 @@ body{
 
 .identyContent{
     margin-right: 20px;
+}
+
+.titleInformationCard{
+    text-align: center;
+    font-size: 80%;
+    background-color:rgb(212, 208, 208);
+}
+
+.mangaInformationCard{
+    text-align: center;
+    font-size: 80%;
+    background-color:rgb(212, 208, 208);
 }

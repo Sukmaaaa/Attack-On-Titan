@@ -61,7 +61,7 @@ class newsController extends Controller
             ]);
 
             return redirect()->route('news.index')
-                ->with('success', 'data created successfully.');
+                ->with('success', 'data created successful');
         };
     }
 
@@ -115,7 +115,7 @@ class newsController extends Controller
 
         $news->update($request->all());
 
-        return redirect()->route('news.index')->with('success', 'data updated successfully.');
+        return redirect()->route('news.index')->with('primary', 'data updated successful.');
     }
 
     /**
@@ -132,6 +132,6 @@ class newsController extends Controller
 
         $news->delete();
 
-        return redirect()->route('news.index')->with('success', 'data deleted successful.');
+        return redirect()->route('news.index')->with('danger', 'data deleted successful.');
     }
 }

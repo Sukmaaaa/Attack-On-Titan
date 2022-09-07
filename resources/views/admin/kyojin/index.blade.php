@@ -16,18 +16,31 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('js/sweetalert2/sweetalert2.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('notification.css') }}"> --}}
 @endsection
 
 
 
 @section('content')
 
-    @if ($message = Session::get('success'))
-     <div class="alert alert-success" id="pemberitahuan1>
-    <p class="notif-create">{{ $message }}</p>
-    </div>
-    @endif
 
+<div>
+    @if ($message = Session::get('success'))
+    <x-adminlte-alert class="text-end" theme="success" title="Success" dismissable id="pemberitahuan1">
+        {{ $message }}
+    </x-adminlte-alert>
+    @endif
+    @if ($message = Session::get('primary'))
+    <x-adminlte-alert theme="primary" title="Info" dismissable id="pemberitahuan1">
+        {{ $message }}
+    </x-adminlte-alert>
+    @endif
+    @if ($message = Session::get('danger'))
+    <x-adminlte-alert theme="danger" title="Danger" dismissable id="pemberitahuan1" class="d-flex ">
+        {{ $message }}
+    </x-adminlte-alert>
+    @endif
+</div>
     @php
 
     $heads = ['No.', 'Image', 'Name', 'Species', 'Gender', ['label' => 'Actions', 'no-export' => true, 'width' => 5]];
@@ -77,8 +90,8 @@
 
 @section('js')
 <script>
-    const pemberitahuan = document.getElementById('pemberitahuan1');
+    const thisAlert = document.getElementById('pemberitahuan1');
 
-    pemberitahuan !== null && setTimeout(() => { pemberitahuan.style.display = 'none' }, 3000);
+    thisAlert !== null && setTimeout(() => { thisAlert.style.display = 'none' }, 3000);
 </script>
 @endsection

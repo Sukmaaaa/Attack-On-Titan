@@ -1,15 +1,15 @@
 @extends('adminlte::page')
 
-@section('title', 'News')
-@section('dashboard_url', 'news')
+@section('title', 'Series')
+@section('dashboard_url', 'Series')
 @section('plugins.Datatables', true)
 @section('plugins.DatatablesPlugin', true)
 
 @section('content_header')
     <div class="row justify-content-between mx-1">
-        <h1>News</h1>
-        @if (auth()->user()->can('create-news'))
-            <a href="{{ route('news.create') }}" class="btn bg-dark">Add News</a>
+        <h1>Series</h1>
+        @if (auth()->user()->can('create-series'))
+            <a href="{{ route('series.create') }}" class="btn bg-dark">Add Series</a>
         @endif
     </div>
 @endsection
@@ -38,27 +38,27 @@
 
 
     @php
-
-    $heads = ['No.', 'Image', 'Article', ['label' => 'Actions', 'no-export' => true, 'width' => 5]];
+    
+    $heads = ['No.', 'Cover', 'Title', ['label' => 'Actions', 'no-export' => true, 'width' => 5]];
     $i = 1;
-    $newnewss = [];
-    foreach ($news as $newss) {
+    $newSeries = [];
+    foreach ($series as $series1) {
         $btnEdit = auth()
             ->user()
-            ->can('edit-news')
-            ? '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit" href="'.route('news.edit', $newss->id).'"><i class="fa fa-lg fa-fw fa-pen"></i></a>'
+            ->can('edit-series')
+            ? '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit" href="'.route('series.edit', $series1->id).'"><i class="fa fa-lg fa-fw fa-pen"></i></a>'
             : '';
         $btnDelete = auth()
             ->user()
-            ->can('delete-news')
+            ->can('delete-series')
             ? '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete" type="submit"><i class="fa fa-lg fa-fw fa-trash"></i></button>'
             : '';
-        $btnDetails = '<a class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details" href="'.route('news.show', $newss->id).'"><i class="fa fa-lg fa-fw fa-eye"></i></a>';
-        $newnewss[] = [$i++, '<img src="'.$newss->image.'" width="40%">', $newss->article, '<form class="d-flex justify-content-center" onsubmit="return confirm(\'Are you sure?\')" action="'.route('news.destroy', $newss->id).'" method="POST">' . csrf_field() . '<input type="hidden" name="_method" value="delete" />' . $btnEdit . $btnDelete . $btnDetails . '</form>'];
+        $btnDetails = '<a class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details" href="'.route('series.show', $series1->id).'"><i class="fa fa-lg fa-fw fa-eye"></i></a>';
+        $newSeries[] = [$i++, '<img src="'.$series1->cover.'" width="40%">', $series1->title, '<form class="d-flex justify-content-center" onsubmit="return confirm(\'Are you sure?\')" action="'.route('series.destroy', $series1->id).'" method="POST">' . csrf_field() . '<input type="hidden" name="_method" value="delete" />' . $btnEdit . $btnDelete . $btnDetails . '</form>'];
     }
 
     $config = [
-        'data' => $newnewss,
+        'data' => $newSeries,
         'order' => [[1, 'asc']],
         'columns' => [null, null, null, ['orderable' => false]],
     ];
@@ -66,7 +66,7 @@
 
     <div class="card">
         <div class="card-header">
-            News List
+            Series List
         </div>
         <div class="card-body">
             <x-adminlte-datatable with-buttons :config="$config" :heads="$heads" head-theme="dark" id="newsTable"

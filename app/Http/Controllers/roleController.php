@@ -59,7 +59,8 @@ class roleController extends Controller
         $role = Role::create(['name' => $request->name]);
         $role->givePermissionTo($request->permission);
 
-        return redirect()->route('role.index');
+        return redirect()->route('role.index')->with
+        ('success', 'Role added successful');
     }
 
     /**
@@ -145,7 +146,8 @@ class roleController extends Controller
     
         $role->syncPermissions($request->input('permission'));
 
-        return redirect()->route('role.index');
+        return redirect()->route('role.index')->with
+        ('primary', 'Role updated successful');
     }
 
     /**
@@ -159,6 +161,6 @@ class roleController extends Controller
         $role = Role::find($id);
         $role->delete();
 
-        return redirect()->route('role.index');
+        return redirect()->route('role.index')->with('danger', 'Role {{ $role->name }} deleted successful');
     }
 }

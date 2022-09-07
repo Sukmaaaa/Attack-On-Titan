@@ -19,9 +19,19 @@
 @section('content')
 
     @if ($message = Session::get('success'))
-     <div class="alert alert-success" id="pemberitahuan1>
-    <p class="notif-create">{{ $message }}</p>
-    </div>
+        <div class="alert alert-success" id="pemberitahuan1">
+        <p class="notif-create">{{ $message }}</p>
+        </div>
+    @endif
+    @if ($message = Session::get('primary'))
+        <div class="alert alert-primary" id="pemberitahuan1">
+        <p class="notif-create">{{ $message }}</p>
+        </div>
+    @endif
+    @if ($message = Session::get('danger'))
+        <div class="alert alert-danger" id="pemberitahuan1">
+        <p class="notif-create">{{ $message }}</p>
+        </div>
     @endif
 
     @php

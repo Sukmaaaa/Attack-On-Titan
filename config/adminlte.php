@@ -235,19 +235,33 @@ return [
             // 'route'         => 'profile.index',
             'icon'        => 'far fa-fw fa-folder',
         ],
-        ['header' => 'dataaccount'],
+        ['header' => 'dataaccount', 'can' => 'view-character'],
         [
             'text'        => 'Characters',
             'route'         => 'kyojin.index',
             'icon'        => 'far fa-fw fa-folder',
             'can' => 'view-character'
         ],
-        ['header' => 'news'],
+        ['header' => 'news', 'can' => 'view-news'],
         [
             'text' => 'News Management',
             'route'      => 'news.index',
             'icon' => 'fas fa-fw fa-newspaper',
             'can' => 'view-news'
+        ],
+        ['header' => 'series', 'can' => 'view-series'],
+        [
+            'text' => 'Series Management',
+            'route'      => 'series.index',
+            'icon' => 'fas fa-fw fa-newspaper',
+            'can' => 'view-series'
+        ],
+        ['header' => 'episode', 'can' => 'view-episode'],
+        [
+            'text' => 'Episode',
+            'route'      => 'episode.index',
+            'icon' => 'fas fa-fw fa-newspaper',
+            'can' => 'view-episode'
         ],
         ['header' => 'account_settings', 'can' => 'view-users'],
         [

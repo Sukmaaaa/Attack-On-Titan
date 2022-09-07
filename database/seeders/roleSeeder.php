@@ -36,6 +36,16 @@ class roleSeeder extends Seeder
         Permission::create(['name' => 'edit-roles']);
         Permission::create(['name' => 'delete-roles']);
 
+        Permission::create(['name' => 'view-series']);
+        Permission::create(['name' => 'create-series']);
+        Permission::create(['name' => 'edit-series']);
+        Permission::create(['name' => 'delete-series']);
+
+        Permission::create(['name' => 'view-episode']);
+        Permission::create(['name' => 'create-episode']);
+        Permission::create(['name' => 'edit-episode']);
+        Permission::create(['name' => 'delete-episode']);
+
         Permission::create(['name' => 'view-audits']);
         
         $admin = Role::create([
@@ -59,31 +69,16 @@ class roleSeeder extends Seeder
             'create-character',
             'edit-character',
             'delete-character',
-            // news
-            'view-news',
-            'create-news',
-            'edit-news',
-            'delete-news',
-            // users
-            'view-users',
-            'create-users',
-            'edit-users',
-            'delete-users',
-            // roles
-            'view-roles',
-            'create-roles',
-            'edit-roles',
-            'delete-roles',
-            // audits
-            'view-audits',
-        ]);
-
-        $admin->givePermissionTo([
-            // character
-            'view-character',
-            'create-character',
-            'edit-character',
-            'delete-character',
+            // series
+            'view-series',
+            'create-series',
+            'edit-series',
+            'delete-series',
+            // episode
+            'view-episode',
+            'create-episode',
+            'edit-episode',
+            'delete-episode',
             // news
             'view-news',
             'create-news',
@@ -105,6 +100,8 @@ class roleSeeder extends Seeder
 
         $user->givePermissionTo([
             'view-character',
+            'view-series',
+            'view-episode',
             'edit-character',
             'view-news',
             'edit-news',
