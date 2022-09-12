@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Genre;
 use Illuminate\Http\Request;
 use App\Models\Series;
 
@@ -30,7 +31,7 @@ class seriesController extends Controller
      */
     public function create()
     {
-        return view('series.create');
+        return view('series.create')->with(['genres' => Genre::all()]);
     }
 
     /**
@@ -42,7 +43,7 @@ class seriesController extends Controller
     public function store(Request $request)
     {
         $this->middleware('can-create-series');
-// 'cover', 'trailer', 'title', 'series' , 'article',  'countryOfOrigin', 'originalNetwork', 'originalRelease'
+        // 'cover', 'trailer', 'title', 'series' , 'article',  'countryOfOrigin', 'originalNetwork', 'originalRelease'
         $request->validate([
             'cover' => 'required',
             'trailer' => 'required',
