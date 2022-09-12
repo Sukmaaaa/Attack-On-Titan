@@ -7,6 +7,7 @@ use App\Http\Controllers\episodeController;
 use App\Http\Controllers\adminKyojinController;
 use App\Http\Controllers\newsController;
 use App\Http\Controllers\roleController;
+use App\Http\Controllers\GenreManagement;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\shingekiController;
 use App\Http\Controllers\auditController;
@@ -61,3 +62,10 @@ Route::get('/role/{role}', [roleController::class, 'show'])->name('role.show');
 Route::put('/role/{role}', [roleController::class, 'update'])->name('role.update')->middleware('can:edit-roles');
 Route::delete('/role/{role}', [roleController::class, 'destroy'])->name('role.destroy')->middleware('can:delete-roles');
 Route::get('/role/{role}/edit', [roleController::class, 'edit'])->name('role.edit')->middleware('can:edit-roles');
+
+Route::get('/genre', [GenreManagement::class, 'index'])->name('genre.index');
+Route::post('/genre', [GenreManagement::class, 'store'])->name('genre.store');
+Route::get('/genre/create', [GenreManagement::class, 'create'])->name('genre.create');
+Route::put('/genre/{genre}', [GenreManagement::class, 'update'])->name('genre.update');
+Route::get('/genre/{genre}/edit', [GenreManagement::class, 'edit'])->name('genre.edit');
+Route::delete('/genre/{genre}', [GenreManagement::class, 'destroy'])->name('genre.destroy');
