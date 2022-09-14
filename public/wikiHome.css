@@ -15,7 +15,7 @@ body{
     width: 330px;
     height: 500px;
     /* left: x; */
-}
+}   
 
 .characterBg{
     background-color: grey;
@@ -64,10 +64,6 @@ body{
 }
 
 .cardCharacter{
-    background-color: transparent;
-}
-
-.card{
     background-color: transparent;
 }
 

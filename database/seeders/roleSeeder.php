@@ -46,6 +46,12 @@ class roleSeeder extends Seeder
         Permission::create(['name' => 'edit-episode']);
         Permission::create(['name' => 'delete-episode']);
 
+
+        Permission::create(['name' => 'view-genre']);
+        Permission::create(['name' => 'create-genre']);
+        Permission::create(['name' => 'update-genre']);
+        Permission::create(['name' => 'delete-genre']);
+        
         Permission::create(['name' => 'view-audits']);
         
         $admin = Role::create([
@@ -94,6 +100,11 @@ class roleSeeder extends Seeder
             'create-roles',
             'edit-roles',
             'delete-roles',
+            // genre
+            'view-genre',
+            'create-genre',
+            'update-genre',
+            'delete-genre',
             // audits
             'view-audits',
         ]);

@@ -54,7 +54,7 @@
             ? '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete" type="submit"><i class="fa fa-lg fa-fw fa-trash"></i></button>'
             : '';
         $btnDetails = '<a class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details" href="'.route('news.show', $newss->id).'"><i class="fa fa-lg fa-fw fa-eye"></i></a>';
-        $newnewss[] = [$i++, '<img src="'.$newss->image.'" width="40%">', $newss->article, '<form class="d-flex justify-content-center" onsubmit="return confirm(\'Are you sure?\')" action="'.route('news.destroy', $newss->id).'" method="POST">' . csrf_field() . '<input type="hidden" name="_method" value="delete" />' . $btnEdit . $btnDelete . $btnDetails . '</form>'];
+        $newnewss[] = [$i++, '<img src="'.$newss->image.'" width="40%">', $newss->article, '<form class="d-flex justify-content-center" onsubmit="return confirm"(\'Are you sure?\')" action="'.route('news.destroy', $newss->id).'" method="POST">' . csrf_field() . '<input type="hidden" name="_method" value="delete" />' . $btnEdit . $btnDelete . $btnDetails . '</form>'];
     }
 
     $config = [

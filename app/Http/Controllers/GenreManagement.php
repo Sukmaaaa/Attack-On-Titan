@@ -19,6 +19,8 @@ class GenreManagement extends Controller
      */
     public function index()
     {
+        $this->middleware('can:view-genre');
+
         $genres = Genre::all();
 
         return view('genreManagement.index')->with(['genres' => $genres]);
@@ -42,6 +44,8 @@ class GenreManagement extends Controller
      */
     public function store(Request $request)
     {
+        $this->middleware('can:view-genre');
+
         $this->validate($request, [
             'name' => 'required'
         ]);
@@ -77,6 +81,8 @@ class GenreManagement extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->middleware('can:view-genre');
+
         $genre = Genre::find($id);
 
         $this->validate($request, [
@@ -98,6 +104,8 @@ class GenreManagement extends Controller
      */
     public function destroy($id)
     {
+        $this->middleware('can:view-genre');
+        
         $genre = Genre::find($id);
         $genre->delete();
 

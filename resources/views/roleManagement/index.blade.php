@@ -46,7 +46,7 @@
         if ($roles->id == 1) {
         $newRoles[] = [$i++, $roles->name, '<form class="d-flex justify-content-center">' . csrf_field()  . $btnDetails . '</form>'];
         } else {
-         $newRoles[] = [$i++, $roles->name, '<form class="d-flex justify-content-center" onsubmit="return confirm(\'Are you sure?\')" action="'.route('role.destroy', $roles->id).'" method="POST">' . csrf_field() . '<input type="hidden" name="_method" value="delete" />' . $btnEdit . $btnDelete . $btnDetails . '</form>'];
+         $newRoles[] = [$i++, $roles->name, '<form class="d-flex justify-content-center" onsubmit="return confirm"(\'Are you sure?\')" action="'.route('role.destroy', $roles->id).'" method="POST">' . csrf_field() . '<input type="hidden" name="_method" value="delete" />' . $btnEdit . $btnDelete . $btnDetails . '</form>'];
     }
 
 

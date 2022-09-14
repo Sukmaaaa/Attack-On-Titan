@@ -10,6 +10,7 @@ return [
     'series'                        => 'SERIES MANAGEMENT',
     'episode'                       => 'EPISODE MANAGEMENT',
     'dataaccount'                   => 'DATA MANAGEMENT',
+    'genres'                        => 'GENRE MANAGEMENT',
     'roles'                         => 'ROLE MANAGEMENT',
     'management'                    => 'MANAGEMENT',
     'me'                            => 'PROFILE',

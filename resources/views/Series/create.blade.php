@@ -18,13 +18,33 @@
             </div>
 
             <div class="card-body">
+                      <x-adminlte-input type="url" name="cover" label="Cover:" placeholder="Please insert link">
+                    </x-adminlte-input>
+
+                    <x-adminlte-input type="url" name="trailer" label="Trailer:" placeholder="Please insert link">
+                    </x-adminlte-input>
+
                 <div class="row">
                     <x-adminlte-input type="text" name="title" label="Title:" placeholder="Season 1"
                         fgroup-class="col-md-6">
                     </x-adminlte-input>
-                    <x-adminlte-input type="url" name="cover" label="Cover:" placeholder="Please insert link"
+
+                    <x-adminlte-input type="text" name="countryOfOrigin" label="Country of Origin:" placeholder="America"
                         fgroup-class="col-md-6">
                     </x-adminlte-input>
+                </div>
+
+                <div class="row">
+                    
+                    <!-- <div class="col">
+                        <label for="genreLabel">Genre:</label>
+                        @foreach ($genres as $genre)
+                            <div class="col icheck-primary">
+                                <input type="checkbox" id="someCheckboxId" name="genre[]" value="{{ $genre->name }}" />
+                                <label for="someCheckboxId">{{ preg_replace('/\-/', ' ', $genre->name) }}</label>
+                            </div>
+                        @endforeach
+                    </div> -->
                 </div>
 
                 <div class="row">
@@ -33,32 +53,24 @@
                         fgroup-class="col-md-12">
                     </x-adminlte-textarea>
                 </div>
-
                 <div class="row">
-                    <x-adminlte-input type="url" name="trailer" label="Trailer:" placeholder="Please insert link"
-                        fgroup-class="col-md-6">
+                    <x-adminlte-input type="date" name="originalRelease" label="Original Release:" fgroup-class="col-6">
                     </x-adminlte-input>
-
-                    <x-adminlte-input type="text" name="countryOfOrigin" label="Country of Origin:" placeholder="America"
-                        fgroup-class="col-md-6">
-                    </x-adminlte-input>
-
                 </div>
-
-                <div class="row">
-                    <x-adminlte-input type="date" name="originalRelease" label="Original Release:" fgroup-class="col-12">
-                    </x-adminlte-input>
-                    <div class="col">
-                        <label for="genreLabel">Genre:</label>
-                        @foreach ($genres as $genre)
-                            <div class="col icheck-primary">
-                                <input type="checkbox" id="someCheckboxId" name="genre[]" value="{{ $genre->name }}" />
-                                <label for="someCheckboxId">{{ preg_replace('/\-/', ' ', $genre->name) }}</label>
-                            </div>
-                        @endforeach
+                <!-- NEW -->
+                <label for="genreLabel">Genre:</label> <br>
+                
+                    <div class="d-flex flex-row flex-wrap col-4">
+                            @foreach ($genres as $genre)
+                                <div class="col-auto icheck-primary" style="gap: 5rem;">
+                                    <input type="checkbox" id="someCheckboxId" name="genre[]" value="{{ $genre->name }}" />
+                                    <label for="someCheckboxId" class="inline">{{ ($genre->name) }}</label>
+                                </div>
+                            @endforeach
                     </div>
-                </div>
 
+                    
+                <!-- END NEW -->
                 <div class="d-flex flex-row justify-content-between">
                     <a href="{{ url()->previous() }}" class="btn btn-default">Back</a>
                     <x-adminlte-button class="btn bg-dark" label="Add Series" type="submit"></x-adminlte-button>

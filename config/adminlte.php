@@ -249,18 +249,25 @@ return [
             'icon' => 'fas fa-fw fa-newspaper',
             'can' => 'view-news'
         ],
+        ['header' => 'genres', 'can' => 'view-genre'],
+        [
+            'text' => 'Genre',
+            'route'      => 'genre.index',
+            'icon' => 'fas fa-fw fa-star',
+            'can' => 'view-genre'
+        ],
         ['header' => 'series', 'can' => 'view-series'],
         [
             'text' => 'Series Management',
             'route'      => 'series.index',
-            'icon' => 'fas fa-fw fa-newspaper',
+            'icon' => 'fas fa-fw fa-film',
             'can' => 'view-series'
         ],
         ['header' => 'episode', 'can' => 'view-episode'],
         [
             'text' => 'Episode',
             'route'      => 'episode.index',
-            'icon' => 'fas fa-fw fa-newspaper',
+            'icon' => 'fas fa-fw fa-film',
             'can' => 'view-episode'
         ],
         ['header' => 'account_settings', 'can' => 'view-users'],

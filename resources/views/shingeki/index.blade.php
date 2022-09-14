@@ -19,23 +19,11 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('wikiHome.css') }}">
     </head>
 <body>
-<!-- Navbar -->
-    {{-- <nav class="navbar navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">AttackOnWiki</a>
-            
-            
-          
-                    <a class="nav-link active" aria-current="page" href="#Synopsis">Synopsis</a>
-                    <a class="nav-link active" aria-current="page" href="#Series">Series</a>
-            
-                
-        </div>
-        </nav> --}}
-<!-- end navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+<!-- NEW NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
-        <a class="navbar-brand navbar-expand-lg" href="#">Attack On Titan</a>
+        <a class="navbar-brand navbar-expand-lg" href="#">Attack on Titan</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -58,7 +46,7 @@
         </div>
     </div>
 </nav>
-
+<!-- END NEW NAVBAR -->
 
 {{-- IDENTY --}}
 {{-- <section id="Home">
@@ -132,8 +120,8 @@
                             <div class="col identyDescription"><p>Cover of Attack on Titan tankōbon volume 1, featuring Eren Yeager about to attack the oncoming Colossal Titan</p></div>
 
                             <div class="container titleInformationCard">
-                                    <p>進撃の巨人<br>
-                                        (<em>Shingeki no Kyojin</em>)</p>
+                                    進撃の巨人<br>
+                                        (<em>Shingeki no Kyojin</em>)
                             </div>
 
                             <div class="row">
@@ -273,7 +261,7 @@
         <h5 class="ms-3">Series</h5>
         <div class="d-flex flew-row ms-3" style="gap: 1rem">
                 @foreach ($news as $n)
-                        <a href="{{route('attack.show', $n->id)}}" class="card cardSeries" style="width: 22rem;">
+                        <a href="{{route('attack.show', $n->id)}}" class="card cardSeries" style="width: 18rem;">
                             <img src="{{ $n->image }}" class="SeriesAOT ms-3 mt-4 season"/>
                             <div class="card-body">
                                 <label class="card-title light" style="text-align: center">{{ $n->article }}</label>

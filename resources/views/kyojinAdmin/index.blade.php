@@ -47,7 +47,7 @@
         if ($users->id == 1) {
             $newUser[] = [$i++, $users->name,$users->email, $users->getRoleNames()[0], '<form class="d-flex justify-content-center">' . csrf_field()  . $btnDetails . '</form>'];
             } else{
-                $newUser[] = [$i++, $users->name, $users->email, $users->getRoleNames()[0], '<form class="d-flex justify-content-center" onsubmit="return confirm(\'Are you sure?\')" action="'.route('adminKyojin.destroy', $users->id).'" method="POST">' . csrf_field() . '<input type="hidden" name="_method" value="delete" />' . $btnEdit . $btnDelete . $btnDetails . '</form>'];
+                $newUser[] = [$i++, $users->name, $users->email, $users->getRoleNames()[0], '<form class="d-flex justify-content-center" onsubmit="return confirm"(\'Are you sure?\')" action="'.route('adminKyojin.destroy', $users->id).'" method="POST">' . csrf_field() . '<input type="hidden" name="_method" value="delete" />' . $btnEdit . $btnDelete . $btnDetails . '</form>'];
             }
     }
 
@@ -57,7 +57,7 @@
     //     $btnEdit = '<a class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit" href="'.route('adminKyojin.edit', $admins->id).'"><i class="fa fa-lg fa-fw fa-pen"></i></a>';
     //     $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete" type="submit"><i class="fa fa-lg fa-fw fa-trash"></i></button>';
     //     $btnDetails = '<a class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details" href="'.route('adminKyojin.show', $admins->id).'"><i class="fa fa-lg fa-fw fa-eye"></i></a>';
-    //     $newAdmin[] = [$i++, $admins->Name, $admins->email, $admins->role, '<form class="d-flex justify-content-center" onsubmit="return confirm(\'Are you sure?\')" action="'.route('adminKyojin.destroy', $users->id).'" method="POST">' . csrf_field() . '<input type="hidden" name="_method" value="delete" />' . $btnEdit . $btnDelete . $btnDetails . '</form>'];
+    //     $newAdmin[] = [$i++, $admins->Name, $admins->email, $admins->role, '<form class="d-flex justify-content-center" onsubmit="return confirm"(\'Are you sure?\')" action="'.route('news.destroy', $newss->id).'" . csrf_field() . '<input type="hidden" name="_method" value="delete" />' . $btnEdit . $btnDelete . $btnDetails . '</form>'];
     // }
     
 
