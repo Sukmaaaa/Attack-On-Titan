@@ -20,22 +20,32 @@
 @endsection
 
 @section('content')
+<!-- NOTIF -->
+@if ($message = Session::get('alert'))
+        <x-adminlte-alert theme="warning" title-class="text-danger text-uppercase"
+    icon="fas fa-exclamation-triangle" title="Warning" dismissable id="pemberitahuan1">
+            {{ $message }}
+        </x-adminlte-alert>
+    @endif
     @if ($message = Session::get('success'))
-     <div class="alert alert-success" id="pemberitahuan1">
-        <p class="notif-create">{{ $message }}</p>
-    </div>
+    <x-adminlte-alert theme="success" title-class="text-danger text-uppercase"
+    icon="fas fas fa-thumbs-up" title="Success" dismissable id="pemberitahuan1">
+            {{ $message }}
+        </x-adminlte-alert>
     @endif
     @if ($message = Session::get('primary'))
-     <div class="alert alert-primary" id="pemberitahuan1">
-        <p class="notif-create">{{ $message }}</p>
-    </div>
+    <x-adminlte-alert theme="primary" title-class="text-danger text-uppercase"
+    icon="fas fa-info-circle" title="Info" dismissable id="pemberitahuan1">
+            {{ $message }}
+        </x-adminlte-alert>
     @endif
     @if ($message = Session::get('danger'))
-     <div class="alert alert-danger" id="pemberitahuan1">
-        <p class="notif-create">{{ $message }}</p>
-    </div>
+    <x-adminlte-alert theme="danger" title-class="text-danger text-uppercase"
+    icon="fas fa-lg fa-exclamation-circle" title="Danger" dismissable id="pemberitahuan1">
+            {{ $message }}
+        </x-adminlte-alert>
     @endif
-
+<!-- END NOTIF -->
 
     @php
     
@@ -51,10 +61,12 @@
         $btnDelete = auth()
             ->user()
             ->can('delete-series')
-            ? '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete" type="submit"><i class="fa fa-lg fa-fw fa-trash"></i></button>'
+            ? "<button class='btn btn-outline-danger btn-sm mx-1' id='btnDelete' onclick='showDelete(".json_encode($series1->getOriginal()).", ".'"'.route('series.update', $series1->id).'"'.")' data-toggle='modal' data-target='#modalDelete' title='Delete'><i class='fa fa-lg fa-trash'></i></button>"
             : '';
         $btnDetails = '<a class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details" href="'.route('series.show', $series1->id).'"><i class="fa fa-lg fa-fw fa-eye"></i></a>';
-        $newSeries[] = [$i++, '<img src="'.$series1->cover.'" width="40%">', $series1->title, '<form class="d-flex justify-content-center" onsubmit="return confirm"(\'Are you sure?\')" action="'.route('series.destroy', $series1->id).'" method="POST">' . csrf_field() . '<input type="hidden" name="_method" value="delete" />' . $btnEdit . $btnDelete . $btnDetails . '</form>'];
+        $formActions = '<div class="d-flex justify-content-center">' . $btnEdit . ' ' . $btnDelete . ' ' . $btnDetails . '</div>';
+
+        $newSeries[] = [$i++, '<img src="'.$series1->cover.'" width="155px">', $series1->title, $formActions ];
     }
 
     $config = [
@@ -69,7 +81,7 @@
             Series List
         </div>
         <div class="card-body">
-            <x-adminlte-datatable with-buttons :config="$config" :heads="$heads" head-theme="dark" id="newsTable"
+            <x-adminlte-datatable :config="$config" :heads="$heads" head-theme="dark" id="newsTable"
                 theme="light" hoverable bordered beautify>
                 @foreach ($config['data'] as $row)
                     <tr>
@@ -81,12 +93,44 @@
             </x-adminlte-datatable>
         </div>
     </div>
+    
+    <!-- MODAL DELETE SERIES -->
+    @if (count($series) >= 1)
+        <x-adminlte-modal id="modalDelete" title="Delete Series" theme="danger" icon="fas fa-newspaper" size='md'
+            v-centered scrollable>
+            <div class="temp"> 
+                
+            <x-slot name="footerSlot"></x-slot>
+        </x-adminlte-modal>
+    @endif
+    <!-- END MODAL DELETE SERIES -->
 @endsection
 
 @section('js')
+<script src="{{ asset('js/sweetalert2/sweetalert2.all.min.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+
 <script>
-    const pemberitahuan = document.getElementById('pemberitahuan1');
+    // NOTIF
+    let pemberitahuan = document.getElementById('pemberitahuan1');
 
     pemberitahuan !== null && setTimeout(() => { pemberitahuan.style.display = 'none' }, 3000);
+    // END NOTIF
+
+    // MODAL BUTTON
+    let btnDelete = document.getElementById("btnDelete");
+
+    // MODAL
+    const modalDelete = document.querySelector(
+            "#modalDelete > div > div > div.modal-body"
+    );
+
+    let showDelete = (series, route) =>{
+        console.log(series)
+        let content =
+                `<form action="${route}" method="POST" class="d-flex flex-column justify-content-center align-items-center">{{ csrf_field() }}<input type="hidden" name="_method" value="DELETE"> <h4 class="font-weight-bold text-center">${series.title}</h4> <img class="img-fluid" src="${series.cover}" width="300"> <p>Are you sure?</p><x-adminlte-button label="Yes, delete!" theme="danger" class="w-100" type="submit"/></form>`;
+
+            return (modalDelete.innerHTML = content);
+    }
 </script>
 @endsection

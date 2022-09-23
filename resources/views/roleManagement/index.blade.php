@@ -16,20 +16,29 @@
 @endsection
 
 @section('content')
+    @if ($message = Session::get('alert'))
+        <x-adminlte-alert theme="warning" title-class="text-danger text-uppercase"
+    icon="fas fa-exclamation-triangle" title="Warning" dismissable id="pemberitahuan1">
+            {{ $message }}
+        </x-adminlte-alert>
+    @endif
     @if ($message = Session::get('success'))
-        <div class="alert alert-success" id="pemberitahuan1">
-            <p class="notif-create">{{ $message }}</p>
-        </div>
+    <x-adminlte-alert theme="success" title-class="text-danger text-uppercase"
+    icon="fas fas fa-thumbs-up" title="Success" dismissable id="pemberitahuan1">
+            {{ $message }}
+        </x-adminlte-alert>
     @endif
     @if ($message = Session::get('primary'))
-        <div class="alert alert-primary" id="pemberitahuan1">
-            <p class="notif-create">{{ $message }}</p>
-        </div>
+    <x-adminlte-alert theme="primary" title-class="text-danger text-uppercase"
+    icon="fas fa-info-circle" title="Info" dismissable id="pemberitahuan1">
+            {{ $message }}
+        </x-adminlte-alert>
     @endif
     @if ($message = Session::get('danger'))
-        <div class="alert alert-danger" id="pemberitahuan1">
-            <p class="notif-create">{{ $message }}</p>
-        </div>
+    <x-adminlte-alert theme="danger" title-class="text-danger text-uppercase"
+    icon="fas fa-lg fa-exclamation-circle" title="Danger" dismissable id="pemberitahuan1">
+            {{ $message }}
+        </x-adminlte-alert>
     @endif
 
 
@@ -65,7 +74,7 @@
             Roles List
         </div>
         <div class="card-body">
-            <x-adminlte-datatable with-buttons :config="$config" :heads="$heads" head-theme="dark" id="newsTable"
+            <x-adminlte-datatable :config="$config" :heads="$heads" head-theme="dark" id="newsTable"
                 theme="light" hoverable bordered beautify>
                 @foreach ($config['data'] as $row)
                     <tr>

@@ -3,32 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\news;
-use App\Models\kyojin;
 use App\Models\episode;
-use App\Models\Genre;
-use App\Models\SeriesHasGenres;
 use App\Models\seriesHasEpisode;
-use App\Models\Series;
 
-
-class shingekiController extends Controller
+class episodeHomeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {   
-        $series = series::all();
-        $news = news::all();
-        $kyojin = kyojin::all();
+    public function index(Request $request)
+    {
+        $episode = episode::all();
 
-        return view('shingeki.index')->with([
-            'news' => $news,
-            'series'=> $series,
-            'kyojin' => $kyojin
+          // get previous user id
+
+        //   $previous = episode::where('id', '<', $episode->id)->max('id');
+
+
+
+          // get next user id
+  
+        //   $next = episode::where('id', '>', $episode->id)->min('id');
+
+        return view('episodeHome.index')->with([
+            'episode' => $episode
         ]);
     }
 
@@ -61,33 +61,7 @@ class shingekiController extends Controller
      */
     public function show($id)
     {
-        $series = series::find($id);
-        $seriesHasGenre = SeriesHasGenres::where('series_id', $id)->get()->all();
-        $genreId = [];
-        $genres = [];
-        $episodes = seriesHasEpisode::where('series_id', $id)->get()->all();
-        $Episode = episode::class;
-
-         // get previous user id
-        $previous = series::where('id', '<', $series->id)->max('id');
-
-        // get next user id
-        $next = series::where('id', '>', $series->id)->min('id');
-
-        foreach($seriesHasGenre as $genre) {
-            $genres[] = Genre::find($genre->genre_id)->name;
-        }
-        
-        return view('shingeki.show')->with([
-            'genreName' => $genres,
-            'series' => $series,
-            'episodes' => $episodes,
-            'genreId' => $genreId,
-            'serieshehe' => series::all(),
-            'previous' => $previous,
-            'next' => $next,
-            'Episode' => $Episode
-        ]);
+        //
     }
 
     /**

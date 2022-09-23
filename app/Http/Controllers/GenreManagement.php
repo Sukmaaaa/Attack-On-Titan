@@ -47,16 +47,26 @@ class GenreManagement extends Controller
         $this->middleware('can:view-genre');
 
         $this->validate($request, [
-            'name' => 'required'
+            'name' => 'required',
+            'definition' => 'required',
         ]);
 
         $genreName = preg_replace('/\s/', '-', $request->name);
 
-        if (Genre::where('name', $genreName)->exists()) return redirect()->route('genre.index')->with(['pemberitahuan' => 'Genre already exists!']);
+        if (Genre::where('name', $genreName)->exists()) return redirect()->route('genre.index')->with(['alert' => 'Genre already exists!']);
 
-        Genre::create($request->only('name'));
+        Genre::create($request->only('name', 'definition'));
 
-        return redirect()->route('genre.index')->with(['pemberitahuan' => 'Genre successfully added!']);
+        return redirect()->route('genre.index')->with(['success' => 'Genre successfully added!']);
+    }
+
+    public function show($id)
+    {
+        $genres = genre::find($id);
+
+        return view('genreManagement.show')->with([
+            'genre' => $genres
+        ]);
     }
 
     /**
@@ -86,14 +96,15 @@ class GenreManagement extends Controller
         $genre = Genre::find($id);
 
         $this->validate($request, [
-            'name' => 'required'
+            'name' => 'required',
+            'definition' => 'required'
         ]);
 
         $genre->update([
-            'name' => preg_replace('/\s/', '-', $request->name)
+            'name' => preg_replace('/\s/', '-', $request->name),
         ]);
 
-        return redirect()->route('genre.index')->with(['pemberitahuan' => 'Genre successfully updated!']);
+        return redirect()->route('genre.index')->with(['primary' => 'Genre successfully updated!']);
     }
 
     /**
@@ -109,6 +120,6 @@ class GenreManagement extends Controller
         $genre = Genre::find($id);
         $genre->delete();
 
-        return redirect()->route('genre.index')->with(['pemberitahuan' => 'Genre successfully deleted!']);
+        return redirect()->route('genre.index')->with(['danger' => 'Genre successfully deleted!']);
     }
 }

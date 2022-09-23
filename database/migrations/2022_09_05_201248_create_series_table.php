@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('cover');
             $table->string('trailer');
             $table->string('title');
-            $table->string('genre');
             $table->string('article', 5048);
             $table->string('countryOfOrigin');
             $table->date('originalRelease');

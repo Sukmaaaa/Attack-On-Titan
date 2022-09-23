@@ -24,23 +24,31 @@
 @section('content')
 
 
-<div>
+    @if ($message = Session::get('alert'))
+        <x-adminlte-alert theme="warning" title-class="text-danger text-uppercase"
+    icon="fas fa-exclamation-triangle" title="Warning" dismissable id="pemberitahuan1">
+            {{ $message }}
+        </x-adminlte-alert>
+    @endif
     @if ($message = Session::get('success'))
-    <x-adminlte-alert class="text-end" theme="success" title="Success" dismissable id="pemberitahuan1">
-        {{ $message }}
-    </x-adminlte-alert>
+    <x-adminlte-alert theme="success" title-class="text-danger text-uppercase"
+    icon="fas fas fa-thumbs-up" title="Success" dismissable id="pemberitahuan1">
+            {{ $message }}
+        </x-adminlte-alert>
     @endif
     @if ($message = Session::get('primary'))
-    <x-adminlte-alert theme="primary" title="Info" dismissable id="pemberitahuan1">
-        {{ $message }}
-    </x-adminlte-alert>
+    <x-adminlte-alert theme="primary" title-class="text-danger text-uppercase"
+    icon="fas fa-info-circle" title="Info" dismissable id="pemberitahuan1">
+            {{ $message }}
+        </x-adminlte-alert>
     @endif
     @if ($message = Session::get('danger'))
-    <x-adminlte-alert theme="danger" title="Danger" dismissable id="pemberitahuan1" class="d-flex ">
-        {{ $message }}
-    </x-adminlte-alert>
+    <x-adminlte-alert theme="danger" title-class="text-danger text-uppercase"
+    icon="fas fa-lg fa-exclamation-circle" title="Danger" dismissable id="pemberitahuan1">
+            {{ $message }}
+        </x-adminlte-alert>
     @endif
-</div>
+
     @php
 
     $heads = ['No.', 'Image', 'Name', 'Species', 'Gender', ['label' => 'Actions', 'no-export' => true, 'width' => 5]];
@@ -73,7 +81,7 @@
             Character List
         </div>
         <div class="card-body">
-            <x-adminlte-datatable with-buttons :config="$config" :heads="$heads" head-theme="dark" id="characterTable"
+            <x-adminlte-datatable :config="$config" :heads="$heads" head-theme="dark" id="characterTable"
                 theme="light" hoverable bordered beautify>
                 @foreach ($config['data'] as $row)
                     <tr>

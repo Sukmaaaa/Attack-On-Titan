@@ -11,6 +11,7 @@ use App\Http\Controllers\GenreManagement;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\shingekiController;
 use App\Http\Controllers\auditController;
+use App\Http\Controllers\episodeHomeController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -66,6 +67,9 @@ Route::get('/role/{role}/edit', [roleController::class, 'edit'])->name('role.edi
 Route::get('/genre', [GenreManagement::class, 'index'])->name('genre.index');
 Route::post('/genre', [GenreManagement::class, 'store'])->name('genre.store');
 Route::get('/genre/create', [GenreManagement::class, 'create'])->name('genre.create');
+Route::get('/genre/{genre}', [GenreManagement::class, 'show'])->name('genre.show');
 Route::put('/genre/{genre}', [GenreManagement::class, 'update'])->name('genre.update');
 Route::get('/genre/{genre}/edit', [GenreManagement::class, 'edit'])->name('genre.edit');
 Route::delete('/genre/{genre}', [GenreManagement::class, 'destroy'])->name('genre.destroy');
+
+Route::get('/episodes', [episodeHomeController::class, 'index'])->name('episodeHome.index');

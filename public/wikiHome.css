@@ -1,9 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Alatsi&family=Rubik+Mono+One&display=swap');
 html{
     scroll-behavior: smooth;
 }
 
 body{
-    background-color: #eee;
+    background-color: rgb(9, 7, 7);
+    color:white;
+}
+
+.navbar-brand{
+    font-family: 'Alatsi', sans-serif;
+}
+
+a{
+    color: white;
+}
+a:hover{
+    color: white;
+    font-weight: bold;
 }
 
 .card{
@@ -92,6 +106,13 @@ body{
     justify-content: center;
 }
 
+.banner{
+    /* height: 100%; */
+    width: fit-content;
+    object-fit: cover;
+    object-position: center;
+}
+
 .identyImg{
     width: 300px;
     height: 350px;
@@ -112,7 +133,7 @@ body{
 .titleInformationCard{
     text-align: center;
     font-size: 80%;
-    background-color:rgb(212, 208, 208);
+    background-color:rgb(58, 37, 37);
 }
 
 .mangaInformationCard{

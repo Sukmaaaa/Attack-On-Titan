@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\episode;
+use App\Models\Series;
+use App\Models\seriesHasEpisode;
 
 class episodeController extends Controller
 {
@@ -30,7 +32,12 @@ class episodeController extends Controller
      */
     public function create()
     {
-        return view('episode.create');
+        $series = series::all();
+        
+
+        return view('episode.create')->with([
+            'series' => $series
+        ]);
     }   
 
     /**
@@ -46,6 +53,7 @@ class episodeController extends Controller
 
         $request->validate([
             'noInSeason' => 'required',
+            'series' => 'required',
             'titleCard' => 'required',
             'title' => 'required',
             'directedBy' => 'required',
@@ -57,7 +65,7 @@ class episodeController extends Controller
         if (episode::where('title', '=', $request->title)->exists()) {
             return redirect()->route('episode.index')->with('alert', 'This episode already exist.');
         } else {
-            episode::create([
+           $episode = episode::create([
                 'noInSeason' => $request->noInSeason,
                 'titleCard' => $request->titleCard,
                 'title' => $request->title,
@@ -65,6 +73,11 @@ class episodeController extends Controller
                 'writenBy' => $request->writenBy,
                 'originalAirDate' => $request->originalAirDate,
                 'description' => $request->description
+            ]);
+            
+            seriesHasEpisode::create([
+                'series_id' => $request->series,
+                'episode_id' => $episode->id
             ]);
 
             return redirect()->route('episode.index')
@@ -78,16 +91,20 @@ class episodeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $episode = episode ::find($id);
+        $episode = episode::find($id);
+        $seriesHasEpisode = seriesHasEpisode::where('episode_id', $id)->get()->first();
 
-        return view('episode.show', compact('episode'));
+        return view('episode.show')->with([
+            'episode' => $episode,
+            'seriesHasEpisode'=>series::find($seriesHasEpisode->series_id)
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
+     *      
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -96,8 +113,12 @@ class episodeController extends Controller
         $this->middleware('can-edit-episode');
 
         $episode = episode::find($id);
+        $series = series::all();
 
-        return view('episode.edit', compact('episode'));
+        return view('episode.edit')->with([
+            'episode' => $episode,
+            'series' => $series
+        ]);
     }
 
     /**
@@ -114,8 +135,11 @@ class episodeController extends Controller
 
         $episode = episode::find($id);
 
+        $seriesHasEpisode = seriesHasEpisode::where('episode_id', $id);
+
         $request->validate([
             'noInSeason' => 'required',
+            'series' => 'required',
             'titleCard' => 'required',
             'title' => 'required',
             'directedBy' => 'required',
@@ -124,7 +148,24 @@ class episodeController extends Controller
             'description' => 'required'
         ]);
 
-        $episode->update($request->all());
+        $seriesHasEpisode2 = series::find($request->series);
+
+        $episode->update([
+            'noInSeason' => $request->noInSeason,
+                'titleCard' => $request->titleCard,
+                'title' => $request->title,
+                'directedBy' => $request->directedBy,
+                'writenBy' => $request->writenBy,
+                'originalAirDate' => $request->originalAirDate,
+                'description' => $request->description
+        ]);
+
+        $seriesHasEpisode->delete();
+
+        seriesHasEpisode::create([
+            'episode_id' => $id,
+            'series_id'=>$request->series
+        ]);
 
         return redirect()->route('episode.index')
             ->with('primary', 'Episode updated successful');

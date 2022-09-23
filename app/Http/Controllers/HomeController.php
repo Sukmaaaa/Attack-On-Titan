@@ -27,12 +27,14 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $getRoleName = User::find(Auth::id())->getRoleNames()[0];
+        $kyojin = kyojin::all();
 
         // $kyojin = kyojin::find->max('$id');
         // $kyojin = kyojin::find($id);
 
         return view('home')->with([
             'roleName' => $getRoleName,
+            'kyojin' => $kyojin
         ]);
     }
 }

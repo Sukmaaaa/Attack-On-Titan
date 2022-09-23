@@ -6,8 +6,9 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('episode.store') }}" method="PUT" class="container">
+<form action="{{ route('episode.update', $episode->id) }}" method="POST" class="container">
         @csrf
+        @method('PUT')
         <div class="card">
             <div class="card-header">
                 <label>Edit Episode</label>
@@ -39,11 +40,19 @@
                 <div class="row">
                     <x-adminlte-input type="date" name="originalAirDate" label="Original Air Date:" placeholder="To You, in 2000 Years: The Fall of Shiganshina, Part 1" fgroup-class="col-md-6" value="{{ old('originalAirDate', $episode->originalAirDate) }}">
                     </x-adminlte-input>
+
+                    <x-adminlte-select name="series" label="Series:" fgroup-class="col-md-6" >
+                    @foreach($series as $series2)
+                        <option value ="{{ $series2->id }}">  {{ $series2->title }}
+                        </option>
+                    @endforeach
+                </x-adminlte-select>        
+                   
                 </div>
 
                 <div class="d-flex flex-row justify-content-between">
                     <a href="{{ url()->previous() }}" class="btn btn-default">Back</a>
-                    <x-adminlte-button class="btn bg-dark" label="Save" type="submit"></x-adminlte-button>
+                    <x-adminlte-button class="btn bg-dark" label="Save Changes" type="submit"></x-adminlte-button>
                 </div>
             </div>
         

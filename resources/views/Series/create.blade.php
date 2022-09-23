@@ -63,17 +63,17 @@
                     <div class="d-flex flex-row flex-wrap col-4">
                             @foreach ($genres as $genre)
                                 <div class="col-auto icheck-primary" style="gap: 5rem;">
-                                    <input type="checkbox" id="someCheckboxId" name="genre[]" value="{{ $genre->name }}" />
+                                    <input type="checkbox" id="someCheckboxId" name="genre[]" value="{{ $genre->id }}" />
                                     <label for="someCheckboxId" class="inline">{{ ($genre->name) }}</label>
                                 </div>
-                            @endforeach
+                            @endforeach 
                     </div>
 
                     
                 <!-- END NEW -->
                 <div class="d-flex flex-row justify-content-between">
                     <a href="{{ url()->previous() }}" class="btn btn-default">Back</a>
-                    <x-adminlte-button class="btn bg-dark" label="Add Series" type="submit"></x-adminlte-button>
+                    <x-adminlte-button class="btn bg-dark" label="Save" type="submit"></x-adminlte-button>
                 </div>
     </form>
     </div>

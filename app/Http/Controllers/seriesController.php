@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Genre;
 use Illuminate\Http\Request;
 use App\Models\Series;
+use App\Models\episode;
+use App\Models\SeriesHasGenres;
+use App\Models\seriesHasEpisode;
 
 class seriesController extends Controller
 {
@@ -57,15 +60,21 @@ class seriesController extends Controller
         if (series::where('title', '=', $request->title)->exists()) {
             return redirect()->route('series.index')->with('alert', 'This data already exist.');
         } else {
-            series::create([
+            $series = series::create([
                 'cover' => $request->cover,
                 'trailer' => $request->trailer,
                 'title' => $request->title,
-                'genre' => $request->genre,
                 'article' => $request->article,
                 'countryOfOrigin' => $request->countryOfOrigin,
                 'originalRelease' => $request->originalRelease
             ]);
+
+            foreach ($request->genre as $key => $value) {
+                SeriesHasGenres::create([
+                    'series_id' => $series->id,
+                    'genre_id' => $value
+                ]);
+            }
 
             return redirect()->route('series.index')
                 ->with('success', 'data created successful.');
@@ -81,8 +90,21 @@ class seriesController extends Controller
     public function show($id)
     {
         $series = series::find($id);
+        $seriesHasGenre = SeriesHasGenres::where('series_id', $id)->get()->all();
+        $genreId = [];
+        $genres = [];
+        $episodes = seriesHasEpisode::where('series_id', $id)->get()->all();
 
-        return view('Series.show', compact('series'));
+        foreach($seriesHasGenre as $genre) {
+            $genres[] = Genre::find($genre->genre_id)->name;
+        }
+        
+        return view('Series.show')->with([
+            'episodes' => $episodes,
+            'genreName' => $genres,
+            'series' => $series,
+            'genreId' => $genreId,
+        ]);
     }
 
     /**
@@ -96,8 +118,18 @@ class seriesController extends Controller
         $this->middleware('can:edit-series');
 
         $series = series::find($id);
+        $seriesHasGenre = SeriesHasGenres::where('series_id', $id)->get()->all();
+        $genreId = [];
 
-        return view('Series.edit', compact('series'));
+        foreach($seriesHasGenre as $genre) {
+            $genreId[] = $genre->genre_id;
+        }
+        
+        return view('Series.edit')->with([
+            'genres' => Genre::all(),
+            'series' => $series,
+            'genreId' => $genreId,
+        ]);
     }
 
     /**
@@ -123,7 +155,27 @@ class seriesController extends Controller
             'originalRelease' => 'required'
         ]);
 
-        $series->update($request->all());
+        $series->update([
+            'cover' => $request->cover,
+                'trailer' => $request->trailer,
+                'title' => $request->title,
+                'article' => $request->article,
+                'countryOfOrigin' => $request->countryOfOrigin,
+                'originalRelease' => $request->originalRelease
+        ]);
+
+        $seriesHasGenres = SeriesHasGenres::where('series_id', $id)->get()->all();
+
+        foreach ($seriesHasGenres as $key => $value) {
+            SeriesHasGenres::where('genre_id', $value->genre_id)->delete();
+        }
+
+        foreach ($request->genre as $key => $value) {
+            SeriesHasGenres::create([
+                'series_id' => $id,
+                'genre_id' => $value
+            ]);
+        }
 
         return redirect()->route('series.index')
             ->with('primary', 'data updated successful');

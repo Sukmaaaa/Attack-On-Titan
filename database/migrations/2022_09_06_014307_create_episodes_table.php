@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('directedBy');
             $table->string('writenBy');
-            $table->string('originalAirDate');
+            $table->date('originalAirDate');
             $table->string('description', 5048);
             $table->timestamps();
         });

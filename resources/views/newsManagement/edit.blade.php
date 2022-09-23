@@ -19,7 +19,7 @@
         </div>
         <div class="d-flex flex-row justify-content-between">
             <a href="{{ url()->previous() }}" class="btn btn-default">Back</a>
-            <x-adminlte-button class="btn bg-dark" label="Edit News" type="submit"></x-adminlte-button>
+            <x-adminlte-button class="btn bg-dark" label="Save Changes" type="submit"></x-adminlte-button>
         </div>
     </form>
 @endsection

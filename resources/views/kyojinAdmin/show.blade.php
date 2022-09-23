@@ -37,8 +37,8 @@
             <div class="col">{{ $user->getRoleNames()[0] }}</div>
         </div>
 
-         <div class="container">  
-            <a href="{{ url()->previous() }}" class="btn btn-primary container mt-4">Back</a> 
+        <div class="row">  
+            <a href="{{ url()->previous() }}" class="btn btn-primary mt-4 col-md-12">Back</a> 
         </div>
 
     </div>

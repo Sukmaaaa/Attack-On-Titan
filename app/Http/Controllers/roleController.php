@@ -56,11 +56,15 @@ class roleController extends Controller
             'permission' => 'required',
         ]);
 
-        $role = Role::create(['name' => $request->name]);
-        $role->givePermissionTo($request->permission);
+        if (Role::where('name', '=', $request->name)->exists()) {
+            return redirect()->route('role.index')->with('alert', 'This data already exist.');
+        } else{
+            $role = Role::create(['name' => $request->name]);
+            $role->givePermissionTo($request->permission);
 
         return redirect()->route('role.index')->with
         ('success', 'Role added successful');
+        };
     }
 
     /**
@@ -161,6 +165,6 @@ class roleController extends Controller
         $role = Role::find($id);
         $role->delete();
 
-        return redirect()->route('role.index')->with('danger', 'Role {{ $role->name }} deleted successful');
+        return redirect()->route('role.index')->with('danger', 'Role deleted successful');
     }
 }

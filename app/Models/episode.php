@@ -13,6 +13,10 @@ class episode extends Model implements Auditable
     use \OwenIt\Auditing\Auditable;
     
     protected $fillable = [
-     'noInSeason','titleCard', 'title', 'directedBy', 'writenBy', 'originalAirDate', 'description'
+     'series', 'noInSeason','titleCard', 'title', 'directedBy', 'writenBy', 'originalAirDate', 'description'
     ];
+
+    public function episode(){
+        $this->belongsTo(seriesHasEpisode::class);
+    }
 }

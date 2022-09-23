@@ -13,20 +13,20 @@
 
 @section('content')
     @php
-    $heads = ['No.', 'User', 'Event', 'Url', 'Created at', 'Updated at', ['label' => 'Actions', 'no-export' => true, 'width' => 5]];
+    $heads = ['No.', 'User', 'Event', 'Url', 'Updated at', ['label' => 'Actions', 'no-export' => true, 'width' => 5]];
     $i = 1;
     $newAudit = [];
     foreach ($Audit as $audits) {
         $user = $audits->user_type;
 
         $btnDetails = '<a class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details" href="'.route('audit.show', $audits->id).'"><i class="fa fa-lg fa-fw fa-eye"></i></a>';
-        $newAudit[] = [$i++, $user::find($audits->user_id)->name, $audits->event, $audits->url, $audits->created_at, $audits->updated_at, '<form class="d-flex justify-content-center">' . csrf_field()  . $btnDetails . '</form>'];
+        $newAudit[] = [$i++, $user::find($audits->user_id)->name, $audits->event, $audits->url, $audits->updated_at, '<form class="d-flex justify-content-center">' . csrf_field()  . $btnDetails . '</form>'];
     }
 
     $config = [
         'data' => $newAudit,
         'order' => [[1, 'asc']],
-        'columns' => [null, null, null, null, null,  ['orderable' => false]],
+        'columns' => [null, null, null, null,  ['orderable' => false]],
     ];
     @endphp
 
@@ -35,7 +35,7 @@
             Audit Log
         </div>
         <div class="card-body">
-            <x-adminlte-datatable with-buttons :config="$config" :heads="$heads" head-theme="dark" id="adminTable"
+            <x-adminlte-datatable  :config="$config" :heads="$heads" head-theme="dark" id="adminTable"
                 theme="light" hoverable bordered beautify>
                 @foreach ($config['data'] as $row)
                     <tr>

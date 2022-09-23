@@ -8,12 +8,52 @@
 
 @section('content')
     {{-- <p>Hello</p> --}}
-    <div class="row">
-        <div class="info-box">
+    <div class="d-flex flex-row flex-wrap" style="gap: 2rem;">
+        <div class="info-box col">
             <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
             <div class="info-box-content">
-            <span class="info-box-text">Messages</span>
-            <span class="info-box-number">1,410</span>
+            <span class="info-box-text">Total Character</span>
+            <span class="info-box-number">{{ count($kyojin) }}</span>
+            </div>
+        </div>
+
+        <div class="info-box col">
+            <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+            <div class="info-box-content">
+            <span class="info-box-text">Total News</span>
+            <span class="info-box-number">{{ count($kyojin) }}</span>
+            </div>
+        </div>
+
+        <div class="info-box col">
+            <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+            <div class="info-box-content">
+            <span class="info-box-text">Total Genre</span>
+            <span class="info-box-number">{{ count($kyojin) }}</span>
+            </div>
+        </div>
+
+        <div class="info-box col">
+            <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+            <div class="info-box-content">
+            <span class="info-box-text">Total Series</span>
+            <span class="info-box-number">{{ count($kyojin) }}</span>
+            </div>
+        </div>
+
+        <div class="info-box col">
+            <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+            <div class="info-box-content">
+            <span class="info-box-text">Total Episode</span>
+            <span class="info-box-number">{{ count($kyojin) }}</span>
+            </div>
+        </div>
+
+        <div class="info-box col">
+            <span class="info-box-icon bg-info"><i class="far fa-envelope"></i></span>
+            <div class="info-box-content">
+            <span class="info-box-text">Total User</span>
+            <span class="info-box-number">{{ count($kyojin) }}</span>
             </div>
         </div>
     </div>
