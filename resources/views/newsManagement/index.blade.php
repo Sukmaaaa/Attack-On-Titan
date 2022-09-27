@@ -67,12 +67,13 @@
 @endsection
 
 @section('js')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 1500,
+            timer: 3000,
             timerProgressBar: true
         })
 
@@ -80,6 +81,18 @@
             Toast.fire({
                 icon: 'success',
                 title: '{{ Session::get('success') }}'
+            })
+    @endif
+    @if (Session::has('danger'))
+            Toast.fire({
+                icon: 'error',
+                title: '{{ Session::get('danger') }}'
+            })
+    @endif
+    @if (Session::has('primary'))
+            Toast.fire({
+                icon: 'success',
+                title: '{{ Session::get('primary') }}'
             })
     @endif
 

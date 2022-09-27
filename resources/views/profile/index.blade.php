@@ -27,7 +27,7 @@
             <!-- new image -->
             <div class="image">
                 <label><h4>Add image</h4></label>
-                <input type="file" class="form-control" required name="image">
+                <input type="file" class="form-control" name="image">
             </div>
 
 
@@ -69,7 +69,11 @@
     </div>
 @endsection
 
+
 @section('js')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+    
     <script>
         const massage = document.getElementById('peringatan');
 
@@ -97,5 +101,39 @@
                 ulangiPassword.removeClass('is-invalid');
             }
         })
+
+        // NOTIFICATION
+        const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+            })
+
+        @if (Session::has('success'))
+                Toast.fire({
+                    icon: 'success',
+                    title: '{{ Session::get('success') }}'
+                })
+        @endif
+        @if (Session::has('danger'))
+                Toast.fire({
+                    icon: 'error',
+                    title: '{{ Session::get('danger') }}'
+                })
+        @endif
+        @if (Session::has('alert'))
+                Toast.fire({
+                    icon: 'error',
+                    title: '{{ Session::get('alert') }}'
+                })
+        @endif
+        @if (Session::has('primary'))
+                Toast.fire({
+                    icon: 'success',
+                    title: '{{ Session::get('primary') }}'
+                })
+        @endif
     </script>
 @endsection

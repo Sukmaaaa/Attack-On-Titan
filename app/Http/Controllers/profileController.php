@@ -26,7 +26,6 @@ class profileController extends Controller
         $user = User::find($id);
 
         $this->validate($request, [
-            'image' => 'required',
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
@@ -50,6 +49,6 @@ class profileController extends Controller
             'password' => $request->new_password == null ? Hash::make($request->password) : Hash::make($request->new_password)
         ]);
 
-        return redirect()->route('kyojin.index');
+        return redirect()->route('profile.index')->with('success', 'Profile Updated!');
     }
 }
