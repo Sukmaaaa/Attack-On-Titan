@@ -17,6 +17,26 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
         <link rel="stylesheet" type="text/css" href="{{ asset('wikiHome.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+        <style>
+            div#social-links {
+                margin: 0 auto;
+                max-width: 500px;
+            }
+            div#social-links ul li {
+                display: inline-block;
+            }          
+            div#social-links ul li a {
+                padding: 20px;
+                border: 1px solid #ccc;
+                margin: 1px;
+                font-size: 30px;
+                color: #222;
+                background-color: #ccc;
+            }
+        </style>
     </head>
 <body>
 
@@ -24,7 +44,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
         <a class="navbar-brand navbar-expand-lg" href="#">Attack on Titan</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
         <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
@@ -92,7 +112,7 @@
     <div class="mt-3 ms-5"><img class="ms-5" src="https://i.imgflip.com/6592dd.png" width="200"></div>
     <hr class="col-12">
         <div class="container d-flex flex-row justify-content-between">
-            <div class="col-6">
+            <div class="col-6 me-5">
             <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/MGRm4IzK1SQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" ></iframe>
 
                 <p class="mt-4">
@@ -294,6 +314,11 @@
    </div>
 </section>
 <!-- End Character -->
+
+
+
+<!-- hehe -->
+<div>{!! $shareComponent !!}</div>
     </body>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

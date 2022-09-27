@@ -1,12 +1,17 @@
 @extends('adminlte::page')
 @section('title', 'Profile')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('profile.css') }}">
+@endsection
+
 @section('content_header')
     <h1>Profile</h1>
 @endsection
 
+
 @section('content')
-    <form action="{{ route('profile.update', $user->id) }}" method="POST" class="container">
+    <form action="{{ route('profile.update', $user->id) }}" method="POST" class="container" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         @if (Session::has('alert'))
@@ -14,6 +19,28 @@
         @endif
         <div class="card">
             <div class="card-body">
+            <!-- image -->
+            <div class="d-flex flex-row container">
+                <img src="{{ url('public/Image/'.$user->image) }}" class="rounded-circle flex-wrap">
+            </div>
+
+            <!-- new image -->
+            <div class="image">
+                <label><h4>Add image</h4></label>
+                <input type="file" class="form-control" required name="image">
+            </div>
+
+
+            <!-- <div class="row mt-3 container">
+                <x-adminlte-input-file name="ifPholder" igroup-size="sm" placeholder="Choose an image" class="col-md-6">
+                    <x-slot name="image">
+                    <div class="input-group-text bg-lightblue">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    </x-slot>
+                </x-adminlte-input-file>
+            </div> -->
+    
                 <div class="row">
                     <x-adminlte-input type="text" label="Name: " name="name" placeholder="Eren Yeager"
                         value="{{ old('name', $user->name) }}" fgroup-class="col-sm-6" required></x-adminlte-input>
@@ -22,13 +49,53 @@
                 </div>
                 <x-adminlte-input type="password" label="Password: " name="password" placeholder="*********" required>
                 </x-adminlte-input>
-                <x-adminlte-input type="password" label="New Password: " name="new_password" placeholder="*********">
-                </x-adminlte-input>
-                <div class="d-flex flex-row justify-content-between">
-                    <a href="{{ url()->previous() }}" class="btn btn-default">Back</a>
-                    <x-adminlte-button class="btn bg-dark" label="Save Changes" type="submit"></x-adminlte-button>
+                <div class="d-flex flex-column">
+                        <label>New Password</label>
+                        <input class="form-control" id="passwordBaru" type="password" name="password_baru" placeholder="***************">
+                    </div>
+
+                    <div class="d-flex flex-column">
+                        <label id="ulangiPasswordLabel">Verify Password</label>
+                        <input class="form-control" id="ulangiPassword" type="password" name="password_baru" placeholder="***************">
+                        <div id="ulangiPasswordFeedback" class="invalid-feedback">Password doesn't match</div>
+                    </div>
+                    
+                    <button class="btn btn-primary mt-3" type="submit">Save Changes</button>
                 </div>
-            </div>
-        </div>
+
     </form>
+
+    </div>
+    </div>
+@endsection
+
+@section('js')
+    <script>
+        const massage = document.getElementById('peringatan');
+
+        massage !== null && setTimeout(() => {
+            massage.style.display = 'none'
+        }, 3000);
+
+        const ulangiPassword = $('#ulangiPassword');
+        const passwordBaru = $('#passwordBaru');
+
+        $('#ulangiPasswordLabel, #ulangiPassword').hide();
+
+        $('#ulangiPassword, #passwordBaru').on('keyup', () => {
+            if (ulangiPassword.val().length > 0) {
+                ulangiPassword.addClass('is-invalid')
+                if (ulangiPassword.val() === passwordBaru.val()) return ulangiPassword.removeClass('is-invalid')
+            }
+        })
+
+        passwordBaru.on('keyup', function() {
+            if ($(this).val().length > 0) return $('#ulangiPasswordLabel, #ulangiPassword').show().fadeIn();
+            if ($(this).val().length <= 0) {
+                $('#ulangiPasswordLabel, #ulangiPassword, #ulangiPasswordFeedback').hide().fadeOut();
+                ulangiPassword.val('');
+                ulangiPassword.removeClass('is-invalid');
+            }
+        })
+    </script>
 @endsection

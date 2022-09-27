@@ -97,6 +97,7 @@
 @endsection
 
 @section('js')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     const thisAlert = document.getElementById('pemberitahuan1');
 

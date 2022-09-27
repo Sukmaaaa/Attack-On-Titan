@@ -235,7 +235,7 @@ return [
             // 'route'         => 'profile.index',
             'icon'        => 'far fa-fw fa-folder',
         ],
-        ['header' => 'dataaccount', 'can' => 'view-character'],
+        ['header' => 'Character', 'can' => 'view-character'],
         [
             'text'        => 'Characters',
             'route'         => 'kyojin.index',

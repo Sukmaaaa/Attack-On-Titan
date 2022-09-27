@@ -25,10 +25,22 @@ class shingekiController extends Controller
         $news = news::all();
         $kyojin = kyojin::all();
 
+        $shareComponent = \Share::page(
+            'http://attack-on-titan.test/attack',
+            'Visit Attack on Titan Wiki',
+        )
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->telegram()
+        ->whatsapp()        
+        ->reddit();
+
         return view('shingeki.index')->with([
             'news' => $news,
             'series'=> $series,
-            'kyojin' => $kyojin
+            'kyojin' => $kyojin,
+            'shareComponent' => $shareComponent
         ]);
     }
 
@@ -86,7 +98,7 @@ class shingekiController extends Controller
             'serieshehe' => series::all(),
             'previous' => $previous,
             'next' => $next,
-            'Episode' => $Episode
+            'Episode' => $Episode,
         ]);
     }
 

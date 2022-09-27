@@ -183,6 +183,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         // AUDIT
         OwenIt\Auditing\AuditingServiceProvider::class,
+        // SHARE
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -213,6 +215,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        // SHARE
+        'Share' => Jorenvh\Share\ShareFacade::class,
     ])->toArray(),
 
 ];

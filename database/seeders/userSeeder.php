@@ -35,6 +35,7 @@ class userSeeder extends Seeder
         ])->assignRole('user');
 
         User::create([
+            'image' => 'https://www.dailysia.com/wp-content/uploads/2022/03/Sarada-Uchiha_1-660x400.jpg',
             'name' => 'afii',
             'email' => 'afii@kyojin.com',
             'password' => Hash::make('afiikyojin')

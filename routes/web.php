@@ -12,6 +12,7 @@ use App\Http\Controllers\profileController;
 use App\Http\Controllers\shingekiController;
 use App\Http\Controllers\auditController;
 use App\Http\Controllers\episodeHomeController;
+use App\Http\Controllers\socialShareButtonsController;
 use Illuminate\Support\Facades\Auth;
 
 /*

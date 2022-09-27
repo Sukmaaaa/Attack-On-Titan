@@ -26,11 +26,20 @@ class profileController extends Controller
         $user = User::find($id);
 
         $this->validate($request, [
+            'image' => 'required',
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
             'new_password'
         ]);
+
+        if($request->file('image')){
+            $file= $request->file('image');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('public/Image'), $filename);
+            $user['image']= $filename;
+        }
+        $user->save();
 
         $creds = $request->only(['email', 'password']);
 

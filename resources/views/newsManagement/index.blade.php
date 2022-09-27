@@ -16,35 +16,9 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('js/sweetalert2/sweetalert2.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('notification.css') }}">
 @endsection
 
 @section('content')
-@if ($message = Session::get('alert'))
-        <x-adminlte-alert theme="warning" title-class="text-danger text-uppercase"
-    icon="fas fa-exclamation-triangle" title="Warning" dismissable id="pemberitahuan1">
-            {{ $message }}
-        </x-adminlte-alert>
-    @endif
-    @if ($message = Session::get('success'))
-    <x-adminlte-alert theme="success" title-class="text-danger text-uppercase"
-    icon="fas fas fa-thumbs-up" title="Success" dismissable id="pemberitahuan1">
-            {{ $message }}
-        </x-adminlte-alert>
-    @endif
-    @if ($message = Session::get('primary'))
-    <x-adminlte-alert theme="primary" title-class="text-danger text-uppercase"
-    icon="fas fa-info-circle" title="Info" dismissable id="pemberitahuan1">
-            {{ $message }}
-        </x-adminlte-alert>
-    @endif
-    @if ($message = Session::get('danger'))
-    <x-adminlte-alert theme="danger" title-class="text-danger text-uppercase"
-    icon="fas fa-lg fa-exclamation-circle" title="Danger" dismissable id="pemberitahuan1">
-            {{ $message }}
-        </x-adminlte-alert>
-    @endif
-
 
     @php
 
@@ -94,8 +68,21 @@
 
 @section('js')
 <script>
-    const pemberitahuan = document.getElementById('pemberitahuan1');
+    const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true
+        })
 
-    pemberitahuan !== null && setTimeout(() => { pemberitahuan.style.display = 'none' }, 3000);
+    @if (Session::has('success'))
+            Toast.fire({
+                icon: 'success',
+                title: '{{ Session::get('success') }}'
+            })
+    @endif
+
+
 </script>
 @endsection
