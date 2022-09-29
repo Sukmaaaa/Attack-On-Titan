@@ -1,0 +1,43 @@
+ul{
+    list-style: none;
+    /* box-shadow: 0 4px 8px 0 #00ffff, 0 6px 20px 0
+    rgba(0, 0, 0, 0.19); */
+}
+
+li{
+    color: white;
+    cursor: pointer;
+}
+
+li:after{
+    display: block;
+}
+
+li:hover::after{
+    transform: scaleX(1);
+}
+
+.carouselImg
+{
+    /* width: 783px;  */
+    height: 323px;
+    object-fit: cover;
+    object-position: center;
+    justify-content: center;
+}
+
+.cardTrending{
+    background-color: transparent;
+}
+
+.cardTitle{
+    margin: auto;
+}
+.trending {
+    filter: brightness(50%);
+    width: 200px;
+    height: 322px;
+    object-fit: cover;
+    object-position: center;
+    justify-content: center;
+}

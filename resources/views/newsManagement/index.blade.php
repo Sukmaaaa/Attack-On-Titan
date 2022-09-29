@@ -52,7 +52,7 @@
             News List
         </div>
         <div class="card-body">
-            <x-adminlte-datatable with-buttons :config="$config" :heads="$heads" head-theme="dark" id="newsTable"
+            <x-adminlte-datatable :config="$config" :heads="$heads" head-theme="dark" id="newsTable"
                 theme="light" hoverable bordered beautify>
                 @foreach ($config['data'] as $row)
                     <tr>

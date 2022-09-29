@@ -20,7 +20,7 @@ class userSeeder extends Seeder
             'name' => 'Naufal',
             'email' => 'superadmin@kyojin.com',
             'password' => Hash::make('kerupukular')
-        ])->assignRole('admin');
+        ])->assignRole('super admin');
 
         User::create([
             'name' => 'Sukma',

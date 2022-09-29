@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'AutumnNime',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>Attack on Titan</b>',
+    'logo' => '<b>Autumn Nime</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -235,56 +235,62 @@ return [
             // 'route'         => 'profile.index',
             'icon'        => 'far fa-fw fa-folder',
         ],
-        ['header' => 'Character', 'can' => 'view-character'],
+        ['header' => 'NEWS MANAGEMENT', 'can' => 'view-news'],
+        [
+            'text' => 'News',
+            'route'      => 'news.index',
+            'icon' => 'fas fa-fw fa-newspaper',
+            'can' => 'view-news'
+        ],
+        ['header' => 'GENRE MANAGEMENT', 'can' => 'view-genre'],
+        [
+            'text' => 'Genres',
+            'route'      => 'genre.index',
+            'icon' => 'fas fa-fw fa-star',
+            'can' => 'view-genre'
+        ],
+        ['header' => 'ANIME MANAGEMENT', 'can' => 'view-series'],
+        [
+            'text' => 'Anime',
+            'route'      => 'anime.index',
+            'icon' => 'fas fa-fw fa-film',
+            'can' => 'view-anime'
+        ],
+        [
+            'text' => 'Series',
+            'route'      => 'series.index',
+            'icon' => 'fas fa-fw fa-film',
+            'can' => 'view-series'
+        ],
+        // ['header' => 'EPISODE MANAGEMENT', 'can' => 'view-episode'],
+        [
+            'text' => 'Episodes',
+            'route'      => 'episode.index',
+            'icon' => 'fas fa-fw fa-film',
+            'can' => 'view-episode'
+        ],
+        // ['header' => 'CHARACTER MANAGEMENT', 'can' => 'view-character'],
         [
             'text'        => 'Characters',
             'route'         => 'kyojin.index',
             'icon'        => 'far fa-fw fa-folder',
             'can' => 'view-character'
         ],
-        ['header' => 'news', 'can' => 'view-news'],
-        [
-            'text' => 'News Management',
-            'route'      => 'news.index',
-            'icon' => 'fas fa-fw fa-newspaper',
-            'can' => 'view-news'
-        ],
-        ['header' => 'genres', 'can' => 'view-genre'],
-        [
-            'text' => 'Genre',
-            'route'      => 'genre.index',
-            'icon' => 'fas fa-fw fa-star',
-            'can' => 'view-genre'
-        ],
-        ['header' => 'series', 'can' => 'view-series'],
-        [
-            'text' => 'Series Management',
-            'route'      => 'series.index',
-            'icon' => 'fas fa-fw fa-film',
-            'can' => 'view-series'
-        ],
-        ['header' => 'episode', 'can' => 'view-episode'],
-        [
-            'text' => 'Episode',
-            'route'      => 'episode.index',
-            'icon' => 'fas fa-fw fa-film',
-            'can' => 'view-episode'
-        ],
-        ['header' => 'account_settings', 'can' => 'view-users'],
+        ['header' => 'USER MANAGEMENT', 'can' => 'view-users'],
         [
             'text' => 'Users',
             'route' => 'adminKyojin.index',
             'icon' => 'fas fa-fw fa-address-book',
             'can' => 'view-users'
         ],
-        ['header' => 'roles', 'can' => 'view-roles'],
+        ['header' => 'ROLES MANAGEMENT', 'can' => 'view-roles'],
         [
             'text' => 'Roles',
             'route'      => 'role.index',
             'icon' => 'fas fa-fw fa-wrench',
             'can' => 'view-roles'
         ],
-        ['header' => 'me'],
+        ['header' => 'PROFILE'],
         [
             'text' => 'Profile',
             'route' => 'profile.index',

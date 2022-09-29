@@ -64,7 +64,23 @@
 @stop
 
 @section('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        // NOTIFICATION
+         const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true
+        })
+        
+        @if (Session::has('login'))
+            Toast.fire({
+                icon: 'success',
+                title: 'Welcome!'
+            })
+        @endif
         console.log('Hi!');
     </script>
 @stop

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\animeController;
+use App\http\Controllers\hotSeriesController;
 use App\Http\Controllers\kyojinController;
 use App\Http\Controllers\seriesController;
 use App\Http\Controllers\episodeController;
@@ -12,6 +14,7 @@ use App\Http\Controllers\profileController;
 use App\Http\Controllers\shingekiController;
 use App\Http\Controllers\auditController;
 use App\Http\Controllers\episodeHomeController;
+use App\Http\Controllers\mainPageController;
 use App\Http\Controllers\socialShareButtonsController;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,14 +29,18 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [mainPageController::class, 'index']);
 
 route::resource('/attack', shingekiController::class);
 route::resource('/audit', auditController::class);
 route::resource('/series', seriesController::class);
 route::resource('/episode', episodeController::class);
+route::resource('/anime', animeController::class);
+route::resource('/hotseries', hotSeriesController::class);
 
 Auth::routes();
 

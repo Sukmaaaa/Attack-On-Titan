@@ -49,12 +49,17 @@ class roleSeeder extends Seeder
 
         Permission::create(['name' => 'view-genre']);
         Permission::create(['name' => 'create-genre']);
-        Permission::create(['name' => 'update-genre']);
+        Permission::create(['name' => 'edit-genre']);
         Permission::create(['name' => 'delete-genre']);
+
+        Permission::create(['name' => 'view-anime']);
+        Permission::create(['name' => 'create-anime']);
+        Permission::create(['name' => 'edit-anime']);
+        Permission::create(['name' => 'delete-anime']);
         
         Permission::create(['name' => 'view-audits']);
         
-        $admin = Role::create([
+        $superAdmin = Role::create([
             'name' => 'super admin',
             'guard_name' => 'web'
         ]);
@@ -67,6 +72,51 @@ class roleSeeder extends Seeder
         $user = Role::create([
             'name' => 'user',
             'guard_name' => 'web'
+        ]);
+
+        $superAdmin->givePermissionTo([
+            // character
+            'view-character',
+            'create-character',
+            'edit-character',
+            'delete-character',
+            // series
+            'view-series',
+            'create-series',
+            'edit-series',
+            'delete-series',
+            // episode
+            'view-episode',
+            'create-episode',
+            'edit-episode',
+            'delete-episode',
+            // news
+            'view-news',
+            'create-news',
+            'edit-news',
+            'delete-news',
+            // users
+            'view-users',
+            'create-users',
+            'edit-users',
+            'delete-users',
+            // roles
+            'view-roles',
+            'create-roles',
+            'edit-roles',
+            'delete-roles',
+            // genre
+            'view-genre',
+            'create-genre',
+            'edit-genre',
+            'delete-genre',
+            // anime
+            'view-anime',
+            'create-anime',
+            'edit-anime',
+            'delete-anime',
+            // audits
+            'view-audits',
         ]);
 
         $admin->givePermissionTo([
@@ -103,8 +153,13 @@ class roleSeeder extends Seeder
             // genre
             'view-genre',
             'create-genre',
-            'update-genre',
+            'edit-genre',
             'delete-genre',
+            // anime
+            'view-anime',
+            'create-anime',
+            'edit-anime',
+            'delete-anime',
             // audits
             'view-audits',
         ]);
