@@ -104,22 +104,19 @@ $config = [
     @if(Session::has('success'))
     Toast.fire({
         icon: 'success',
-        title: '{{ Session::get('
-        success ') }}'
+        title: '{{ Session::get('success') }}'
     })
     @endif
     @if(Session::has('danger'))
     Toast.fire({
         icon: 'error',
-        title: '{{ Session::get('
-        danger ') }}'
+        title: '{{ Session::get('danger') }}'
     })
     @endif
     @if(Session::has('primary'))
     Toast.fire({
         icon: 'success',
-        title: '{{ Session::get('
-        primary ') }}'
+        title: '{{ Session::get('primary') }}'
     })
     @endif
 </script>

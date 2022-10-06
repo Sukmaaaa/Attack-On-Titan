@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>Autumn Nime</b>',
+    'logo' => '<b>AutumnNime</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -191,9 +191,9 @@ return [
     'dashboard_url' => 'home',
     'logout_url' => 'logout',
     'login_url' => 'login',
-    'register_url' => 'register',
-    'password_reset_url' => 'password/reset',
-    'password_email_url' => 'password/email',
+    // 'register_url' => 'register',
+    // 'password_reset_url' => 'password/reset',
+    // 'password_email_url' => 'password/email',
     'profile_url' => false,
 
     /*
@@ -235,18 +235,25 @@ return [
             // 'route'         => 'profile.index',
             'icon'        => 'far fa-fw fa-folder',
         ],
-        ['header' => 'NEWS MANAGEMENT', 'can' => 'view-news'],
-        [
-            'text' => 'News',
-            'route'      => 'news.index',
-            'icon' => 'fas fa-fw fa-newspaper',
-            'can' => 'view-news'
-        ],
+        // ['header' => 'HOT SERIES', 'can' => 'view-hotseries'],
+        // [
+        //     'text' => ' Hot Series',
+        //     'route'      => 'hotseries.index',
+        //     'icon' => 'fas fa-fw fa-newspaper',
+        //     'can' => 'view-hotSeries'
+        // ],
+        // ['header' => 'NEWS MANAGEMENT', 'can' => 'view-news'],
+        // [
+        //     'text' => 'News',
+        //     'route'      => 'news.index',
+        //     'icon' => 'fas fa-fw fa-newspaper',
+        //     'can' => 'view-news'
+        // ],
         ['header' => 'GENRE MANAGEMENT', 'can' => 'view-genre'],
         [
             'text' => 'Genres',
             'route'      => 'genre.index',
-            'icon' => 'fas fa-fw fa-star',
+            'icon' => 'fas fa-fw fa-tag',
             'can' => 'view-genre'
         ],
         ['header' => 'ANIME MANAGEMENT', 'can' => 'view-series'],
@@ -259,21 +266,21 @@ return [
         [
             'text' => 'Series',
             'route'      => 'series.index',
-            'icon' => 'fas fa-fw fa-film',
+            'icon' => 'fas fa-fw fa-folder',
             'can' => 'view-series'
         ],
         // ['header' => 'EPISODE MANAGEMENT', 'can' => 'view-episode'],
         [
             'text' => 'Episodes',
             'route'      => 'episode.index',
-            'icon' => 'fas fa-fw fa-film',
+            'icon' => 'fas fa-fw fa-layer-group',
             'can' => 'view-episode'
         ],
         // ['header' => 'CHARACTER MANAGEMENT', 'can' => 'view-character'],
         [
             'text'        => 'Characters',
             'route'         => 'kyojin.index',
-            'icon'        => 'far fa-fw fa-folder',
+            'icon' => 'fas fa-fw fa-user-astronaut',
             'can' => 'view-character'
         ],
         ['header' => 'USER MANAGEMENT', 'can' => 'view-users'],

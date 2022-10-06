@@ -6,6 +6,11 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\kyojin;
+use App\Models\news;
+use App\Models\Genre;
+use App\Models\anime;
+use App\Models\series;
+use App\Models\episode;
 
 class HomeController extends Controller
 {
@@ -28,13 +33,25 @@ class HomeController extends Controller
     {
         $getRoleName = User::find(Auth::id())->getRoleNames()[0];
         $kyojin = kyojin::all();
+        $news = news::all();
+        $genre = genre::all();
+        $anime = anime::all();
+        $series = series::all();
+        $episode = episode::all();
+        $user = user::all();
 
         // $kyojin = kyojin::find->max('$id');
         // $kyojin = kyojin::find($id);
 
         return view('home')->with([
             'roleName' => $getRoleName,
-            'kyojin' => $kyojin
+            'kyojin' => $kyojin,
+            'news' => $news,
+            'genre' => $genre,
+            'anime' => $anime,
+            'series' => $series,
+            'episode' => $episode,
+            'user' => $user,
         ]);
     }
 }

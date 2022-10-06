@@ -33,12 +33,12 @@ class episodeController extends Controller
     public function create()
     {
         $series = series::all();
-        
+
 
         return view('episode.create')->with([
             'series' => $series
         ]);
-    }   
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -65,7 +65,7 @@ class episodeController extends Controller
         if (episode::where('title', '=', $request->title)->exists()) {
             return redirect()->route('episode.index')->with('alert', 'This episode already exist.');
         } else {
-           $episode = episode::create([
+            $episode = episode::create([
                 'noInSeason' => $request->noInSeason,
                 'titleCard' => $request->titleCard,
                 'title' => $request->title,
@@ -74,7 +74,7 @@ class episodeController extends Controller
                 'originalAirDate' => $request->originalAirDate,
                 'description' => $request->description
             ]);
-            
+
             seriesHasEpisode::create([
                 'series_id' => $request->series,
                 'episode_id' => $episode->id
@@ -98,7 +98,7 @@ class episodeController extends Controller
 
         return view('episode.show')->with([
             'episode' => $episode,
-            'seriesHasEpisode'=>series::find($seriesHasEpisode->series_id)
+            'seriesHasEpisode' => series::find($seriesHasEpisode->series_id)
         ]);
     }
 
@@ -130,7 +130,7 @@ class episodeController extends Controller
      */
     public function update(Request $request, $id)
     {
-         // 'noInSeason','titleCard', 'title', 'directedBy', 'writenBy', 'originalAirDate', 'description'
+        // 'noInSeason','titleCard', 'title', 'directedBy', 'writenBy', 'originalAirDate', 'description'
         $this->middleware('can:edit-episode');
 
         $episode = episode::find($id);
@@ -152,19 +152,19 @@ class episodeController extends Controller
 
         $episode->update([
             'noInSeason' => $request->noInSeason,
-                'titleCard' => $request->titleCard,
-                'title' => $request->title,
-                'directedBy' => $request->directedBy,
-                'writenBy' => $request->writenBy,
-                'originalAirDate' => $request->originalAirDate,
-                'description' => $request->description
+            'titleCard' => $request->titleCard,
+            'title' => $request->title,
+            'directedBy' => $request->directedBy,
+            'writenBy' => $request->writenBy,
+            'originalAirDate' => $request->originalAirDate,
+            'description' => $request->description
         ]);
 
         $seriesHasEpisode->delete();
 
         seriesHasEpisode::create([
             'episode_id' => $id,
-            'series_id'=>$request->series
+            'series_id' => $request->series
         ]);
 
         return redirect()->route('episode.index')

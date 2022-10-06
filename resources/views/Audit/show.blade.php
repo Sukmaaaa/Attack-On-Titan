@@ -83,8 +83,8 @@
                     <div class="col">{{$Audit->updated_at}}</div>
                 </div>
 
-                <div class="container">  
-                    <a href="{{ url()->previous() }}" class="btn btn-primary container mt-4">Back</a> 
+                <div class="row">  
+                    <a href="{{ url()->previous() }}" class="btn btn-primary container mt-4 col-md-12">Back</a> 
                 </div>
             </div>
         </div>

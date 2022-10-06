@@ -16,27 +16,6 @@
 @endsection
 
 @section('content')
-@if ($message = Session::get('alert'))
-<x-adminlte-alert theme="warning" title-class="text-danger text-uppercase" icon="fas fa-exclamation-triangle" title="Warning" dismissable id="pemberitahuan1">
-    {{ $message }}
-</x-adminlte-alert>
-@endif
-@if ($message = Session::get('success'))
-<x-adminlte-alert theme="success" title-class="text-danger text-uppercase" icon="fas fas fa-thumbs-up" title="Success" dismissable id="pemberitahuan1">
-    {{ $message }}
-</x-adminlte-alert>
-@endif
-@if ($message = Session::get('primary'))
-<x-adminlte-alert theme="primary" title-class="text-danger text-uppercase" icon="fas fa-info-circle" title="Info" dismissable id="pemberitahuan1">
-    {{ $message }}
-</x-adminlte-alert>
-@endif
-@if ($message = Session::get('danger'))
-<x-adminlte-alert theme="danger" title-class="text-danger text-uppercase" icon="fas fa-lg fa-exclamation-circle" title="Danger" dismissable id="pemberitahuan1">
-    {{ $message }}
-</x-adminlte-alert>
-@endif
-
 
 @php
 
@@ -76,22 +55,41 @@ $config = [
 </div>
 @endsection
 
-<!-- @section('js')
-    <script>
-        var pemberitahuan = document.getElementById('pemberitahuan1');
-
-        pemberitahuan !== null && setTimeout(() => {
-            pemberitahuan.style.display = 'none'
-        }, 3000);
-    </script>
-@endsection -->
-
 @section('js')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    const pemberitahuan = document.getElementById('pemberitahuan1');
+    const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true
+        })
 
-    pemberitahuan !== null && setTimeout(() => {
-        pemberitahuan.style.display = 'none'
-    }, 3000);
+    @if (Session::has('success'))
+            Toast.fire({
+                icon: 'success',
+                title: '{{ Session::get('success') }}'
+            })
+    @endif
+    @if (Session::has('danger'))
+            Toast.fire({
+                icon: 'error',
+                title: '{{ Session::get('danger') }}'
+            })
+    @endif
+    @if (Session::has('alert'))
+            Toast.fire({
+                icon: 'error',
+                title: '{{ Session::get('alert') }}'
+            })
+    @endif
+    @if (Session::has('primary'))
+            Toast.fire({
+                icon: 'success',
+                title: '{{ Session::get('primary') }}'
+            })
+    @endif
+
 </script>
 @endsection

@@ -13,7 +13,6 @@ class hotSeriesController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**

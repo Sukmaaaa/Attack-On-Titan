@@ -16,8 +16,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('anime_has_series', function (Blueprint $table) {
-            $table->foreignIdFor(anime::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Series::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(anime::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -69,7 +69,7 @@ $config = [
 
 <!-- MODAL DELETE SERIES -->
 @if (count($series) >= 1)
-<x-adminlte-modal id="modalDelete" title="Delete Series" theme="danger" icon="fas fa-newspaper" size='md' v-centered scrollable>
+<x-adminlte-modal id="modalDelete" title="Delete Series" theme="danger" icon="fas fa-folder" size='md' v-centered scrollable>
     <div class="temp">
 
         <x-slot name="footerSlot"></x-slot>
@@ -119,29 +119,25 @@ $config = [
     @if(Session::has('success'))
     Toast.fire({
         icon: 'success',
-        title: '{{ Session::get('
-        success ') }}'
+        title: '{{ Session::get('success') }}'
     })
     @endif
     @if(Session::has('danger'))
     Toast.fire({
         icon: 'error',
-        title: '{{ Session::get('
-        danger ') }}'
+        title: '{{ Session::get('danger') }}'
     })
     @endif
     @if(Session::has('alert'))
     Toast.fire({
         icon: 'error',
-        title: '{{ Session::get('
-        alert ') }}'
+        title: '{{ Session::get('alert') }}'
     })
     @endif
     @if(Session::has('primary'))
     Toast.fire({
         icon: 'success',
-        title: '{{ Session::get('
-        primary ') }}'
+        title: '{{ Session::get('primary') }}'
     })
     @endif
 </script>

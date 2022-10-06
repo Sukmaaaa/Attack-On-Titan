@@ -56,6 +56,11 @@ class roleSeeder extends Seeder
         Permission::create(['name' => 'create-anime']);
         Permission::create(['name' => 'edit-anime']);
         Permission::create(['name' => 'delete-anime']);
+
+        Permission::create(['name' => 'view-hotSeries']);
+        Permission::create(['name' => 'create-hotSeries']);
+        Permission::create(['name' => 'edit-hotSeries']);
+        Permission::create(['name' => 'delete-hotSeries']);
         
         Permission::create(['name' => 'view-audits']);
         
@@ -115,6 +120,11 @@ class roleSeeder extends Seeder
             'create-anime',
             'edit-anime',
             'delete-anime',
+            // hotseries
+            'view-hotSeries',
+            'create-hotSeries',
+            'edit-hotSeries',
+            'delete-hotSeries',
             // audits
             'view-audits',
         ]);
@@ -160,6 +170,11 @@ class roleSeeder extends Seeder
             'create-anime',
             'edit-anime',
             'delete-anime',
+             // hotseries
+             'view-hotSeries',
+             'create-hotSeries',
+             'edit-hotSeries',
+             'delete-hotSeries',
             // audits
             'view-audits',
         ]);

@@ -33,10 +33,19 @@ li:hover::after{
 .cardTitle{
     margin: auto;
 }
+
 .trending {
     filter: brightness(50%);
     width: 200px;
     height: 322px;
+    object-fit: cover;
+    object-position: center;
+    justify-content: center;
+}
+
+.latestRelease{
+    width: 200px;
+    height: 200px;
     object-fit: cover;
     object-position: center;
     justify-content: center;

@@ -20,26 +20,25 @@
         <div class="card">
             <div class="card-body">
             <!-- image -->
-            <div class="d-flex flex-row container">
+            <div class="d-flex flex-row container justify-content-center">
                 <img src="{{ url('public/Image/'.$user->image) }}" class="rounded-circle flex-wrap">
             </div>
 
             <!-- new image -->
-            <div class="image">
-                <label><h4>Add image</h4></label>
+            <!-- <div class="image mt-3">
                 <input type="file" class="form-control" name="image">
-            </div>
+            </div> -->
 
 
-            <!-- <div class="row mt-3 container">
-                <x-adminlte-input-file name="ifPholder" igroup-size="sm" placeholder="Choose an image" class="col-md-6">
+            <div class="d-flex mt-3">
+                <x-adminlte-input-file name="image" igroup-size="sm" placeholder="Choose an image" class="col-md-6">
                     <x-slot name="image">
                     <div class="input-group-text bg-lightblue">
                         <i class="fas fa-upload"></i>
                     </div>
                     </x-slot>
                 </x-adminlte-input-file>
-            </div> -->
+            </div>
     
                 <div class="row">
                     <x-adminlte-input type="text" label="Name: " name="name" placeholder="Eren Yeager"
@@ -60,7 +59,7 @@
                         <div id="ulangiPasswordFeedback" class="invalid-feedback">Password doesn't match</div>
                     </div>
                     
-                    <button class="btn btn-primary mt-3" type="submit">Save Changes</button>
+                    <button class="btn btn-primary mt-3 container" type="submit">Save Changes</button>
                 </div>
 
     </form>

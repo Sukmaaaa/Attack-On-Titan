@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\animeHasSeries;
+use App\Models\anime;
 use App\Models\Genre;
 use Illuminate\Http\Request;
 use App\Models\Series;
@@ -34,7 +36,12 @@ class seriesController extends Controller
      */
     public function create()
     {
-        return view('series.create')->with(['genres' => Genre::all()]);
+        $anime = anime::all();
+
+        return view('series.create')->with([
+            'genres' => Genre::all(),
+            'anime' => $anime
+        ]);
     }
 
     /**
@@ -76,8 +83,12 @@ class seriesController extends Controller
                 ]);
             }
 
-            return redirect()->route('series.index')
-                ->with('success', 'data created successful.');
+            animeHasSeries::create([
+                'anime_id' => $request->anime,
+                'series_id' => $series->id
+            ]);
+
+            return redirect()->route('series.index')->with(['success' => 'Series Added succesful!']);
         };
     }
 
@@ -94,16 +105,19 @@ class seriesController extends Controller
         $genreId = [];
         $genres = [];
         $episodes = seriesHasEpisode::where('series_id', $id)->get()->all();
+        $animeHasSeries = animeHasSeries::where('series_id', $id)->get()->first();
 
-        foreach($seriesHasGenre as $genre) {
+
+        foreach ($seriesHasGenre as $genre) {
             $genres[] = Genre::find($genre->genre_id)->name;
         }
-        
+
         return view('Series.show')->with([
             'episodes' => $episodes,
             'genreName' => $genres,
             'series' => $series,
             'genreId' => $genreId,
+            'animeHasSeries' => anime::find($animeHasSeries->anime_id)
         ]);
     }
 
@@ -118,17 +132,19 @@ class seriesController extends Controller
         $this->middleware('can:edit-series');
 
         $series = series::find($id);
+        $anime = anime::all();
         $seriesHasGenre = SeriesHasGenres::where('series_id', $id)->get()->all();
         $genreId = [];
 
-        foreach($seriesHasGenre as $genre) {
+        foreach ($seriesHasGenre as $genre) {
             $genreId[] = $genre->genre_id;
         }
-        
+
         return view('Series.edit')->with([
             'genres' => Genre::all(),
             'series' => $series,
             'genreId' => $genreId,
+            'anime' => $anime
         ]);
     }
 
@@ -145,6 +161,8 @@ class seriesController extends Controller
 
         $series = series::find($id);
 
+        $animeHasSeries = animeHasSeries::where('series_id', $id);
+
         $request->validate([
             'cover' => 'required',
             'trailer' => 'required',
@@ -157,11 +175,18 @@ class seriesController extends Controller
 
         $series->update([
             'cover' => $request->cover,
-                'trailer' => $request->trailer,
-                'title' => $request->title,
-                'article' => $request->article,
-                'countryOfOrigin' => $request->countryOfOrigin,
-                'originalRelease' => $request->originalRelease
+            'trailer' => $request->trailer,
+            'title' => $request->title,
+            'article' => $request->article,
+            'countryOfOrigin' => $request->countryOfOrigin,
+            'originalRelease' => $request->originalRelease
+        ]);
+
+        $animeHasSeries->delete();
+
+        animeHasSeries::create([
+            'series_id' => $id,
+            'anime_id' => $request->anime
         ]);
 
         $seriesHasGenres = SeriesHasGenres::where('series_id', $id)->get()->all();

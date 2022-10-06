@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\episode;
+use App\Models\Series;
 
 class mainPageController extends Controller
 {
@@ -12,7 +14,13 @@ class mainPageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+
+        $series = Series::latest()->paginate(3);
+        $episode = episode::latest()->paginate(10);
+
+        // return dd($series);
+
         $shareComponent = \Share::page(
             'http://attack-on-titan.test/',
             'Visit Attack on Titan Wiki',
@@ -25,7 +33,9 @@ class mainPageController extends Controller
         ->reddit();
 
         return view('mainPage.index')->with([
-            'shareComponent' => $shareComponent
+            'shareComponent' => $shareComponent,
+            'episode' => $episode,
+            'series' => $series
         ]);
     }
 

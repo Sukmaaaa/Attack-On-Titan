@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Episode Detail')
+@section('title', 'Anime Detail')
 @section('dashboard_url', 'Episode')
 @section('plugins.Datatables', true)
 @section('plugins.DatatablesPlugin', true)
